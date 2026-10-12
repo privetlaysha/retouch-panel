@@ -17,12 +17,14 @@ async function bp(descriptors, options = {}) {
   });
 }
 
-// Обёртка: модальное выполнение (для операций, меняющих документ)
+// Обёртка: код уже выполняется внутри executeAsModal (runScript оборачивает всё),
+// поэтому modal просто выполняет функцию, ловя ошибки в консоль.
 async function modal(name, fn) {
   try {
-    await core.executeAsModal(fn, { commandName: name });
+    await fn();
   } catch (e) {
     console.error(`[${name}]`, e);
+    throw e;
   }
 }
 
@@ -774,7 +776,11 @@ globalThis.openUrl = openUrl;
 
 function runScript(name) {
   if (name.startsWith("__tool:")) {
-    bp([dSelectTool(name.slice(7))]).catch((e) => console.error("[tool]", e));
+    core
+      .executeAsModal(async () => {
+        await bp([dSelectTool(name.slice(7))]);
+      }, { commandName: "Select Tool" })
+      .catch((e) => console.error("[tool]", e));
     return;
   }
   const target = Aliases[name] || name;
@@ -783,9 +789,16 @@ function runScript(name) {
     console.error("Unknown script:", name);
     return;
   }
-  Promise.resolve()
-    .then(fn)
-    .catch((e) => console.error(`[${name}]`, e));
+  // ВСЯ команда целиком — в модальном контексте, как в оригинальной панели
+  core
+    .executeAsModal(async () => {
+      await fn();
+    }, { commandName: "My Retouch: " + name })
+    .then(() => uiStatus("Done: " + name))
+    .catch((e) => {
+      console.error(`[${name}]`, e);
+      uiStatus("Error: " + (e && e.message ? e.message : name));
+    });
 }
 
 // делаем доступным из inline-обработчиков

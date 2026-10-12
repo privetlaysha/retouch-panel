@@ -257,6 +257,19 @@ document.addEventListener("mouseout", (e) => {
 /* ---------- Старт ---------- */
 
 document.addEventListener("DOMContentLoaded", () => {
+  // UXP не выполняет inline onclick — переводим их на addEventListener
+  document.querySelectorAll("[onclick]").forEach((el) => {
+    const code = el.getAttribute("onclick");
+    el.removeAttribute("onclick");
+    el.addEventListener("click", (ev) => {
+      ev.stopPropagation();
+      try {
+        new Function(code)();
+      } catch (e) {
+        console.error("[onclick]", code, e);
+      }
+    });
+  });
   applyTheme();
   selectTab("skin");
   vaSelect("1");

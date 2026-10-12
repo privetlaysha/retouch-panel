@@ -106,6 +106,7 @@
       ]
     },
     "localFileSystem": "request",
-    "clipboard": "readAndWrite"
+    "clipboard": "readAndWrite",
+    "allowCodeGenerationFromStrings": true
   }
 }
