@@ -99,3 +99,17 @@ Want a new button? Add a `<div data-cmd="MyThing">`, write `Scripts.MyThing = �
 ## License
 
 MIT — do whatever you want.
+
+## Version 6 UI (MyRetouchPanel6/)
+
+A second variant of the panel recreating the 6.0 layout: light/dark/black themes, Skin & Face tabs,
+a Visual Aid selector, status screen, tool flyouts and a New Skin drawer with FS sliders.
+Everything 5.2 does, plus:
+
+- **Select People** — eyes / lips / teeth / hair / body selections (PS 25.9+, experimental descriptor)
+- **Auto Skin Mask** — one-click facial skin isolation into a masked adjustment layer
+- **Film Grain** — full-frame grain layer
+- **Smart Liquify** — converts to Smart Object first, so Liquify stays editable
+- **Image Size with Preserve Details 2.0**
+
+![My Retouch Panel 6](docs/screenshot-v6.png)
