@@ -60,6 +60,14 @@ const dSetOpacity = (pct) => ({
   ...dontDisplay,
 });
 
+// Удалить текущую маску слоя (в PS 27+ adj-слой создаётся уже с белой маской —
+// перед созданием новой маски старую нужно удалить, как это делает оригинал)
+const dDeleteMask = () => ({
+  _obj: "delete",
+  _target: [{ _ref: "channel", _enum: "ordinal", _value: "targetEnum" }],
+  ...dontDisplay,
+});
+
 // Чёрная маска «скрыть всё» на текущем слое
 const dMaskHideAll = () => ({
   _obj: "make",
@@ -233,7 +241,7 @@ const dIntersectRGB = () => ({
 /* ---------- Более крупные строительные блоки ---------- */
 
 async function makeCurvesAdj(name, points, hideAll) {
-  await bp([dMakeAdj("curves"), dSetCurve(points), dRenameLayer(name), ...(hideAll ? [dMaskHideAll()] : [])]);
+  await bp([dMakeAdj("curves"), dSetCurve(points), dRenameLayer(name), ...(hideAll ? [dDeleteMask(), dMaskHideAll()] : [])]);
 }
 
 async function makeHueSatAdj(name, h, s, l, hideAll) {
@@ -253,7 +261,7 @@ async function makeHueSatAdj(name, h, s, l, hideAll) {
     },
     dSetHueSat(h, s, l),
     dRenameLayer(name),
-    ...(hideAll ? [dMaskHideAll()] : []),
+    ...(hideAll ? [dDeleteMask(), dMaskHideAll()] : []),
   ]);
 }
 
@@ -649,6 +657,7 @@ const Scripts = {
       await Scripts.SelectPeoplePart("skin");
       await makeCurvesAdj("Auto Skin Mask", [[0, 0], [128, 128], [255, 255]], false);
       await bp([
+        dDeleteMask(),
         {
           _obj: "make",
           new: { _class: "channel" },
