@@ -7,14 +7,43 @@
 const { app, action, core } = require("photoshop");
 const { entrypoints } = require("uxp");
 
+/* ---------- Отладочный лог в файл (читается снаружи, без консоли) ---------- */
+
+let _logFile = null;
+async function logLine(msg) {
+  try {
+    const fs = require("uxp").storage.localFileSystem;
+    if (!_logFile) {
+      const folder = await fs.getDataFolder();
+      _logFile = await folder.createFile("mrp-debug.log", { overwrite: true });
+    }
+    await _logFile.write(
+      new Date().toISOString().slice(11, 19) + " " + msg + "\n",
+      { append: true }
+    );
+  } catch (e) {}
+}
+logLine("=== panel loaded ===");
+
 /* ---------- Базовые помощники ---------- */
 
 // Выполнить пачку дескрипторов, не роняя панель при ошибке
 async function bp(descriptors, options = {}) {
-  return await action.batchPlay(descriptors, {
+  const res = await action.batchPlay(descriptors, {
     synchronousExecution: true,
     ...options,
   });
+  // per-descriptor ошибки приходят в результатах — логируем с указанием команды
+  try {
+    res.forEach((r, i) => {
+      if (r && (r.message || r.result === false)) {
+        logLine(
+          "BPERR " + (descriptors[i] && descriptors[i]._obj) + " :: " + (r.message || "failed")
+        );
+      }
+    });
+  } catch (e) {}
+  return res;
 }
 
 // Обёртка: код уже выполняется внутри executeAsModal (runScript оборачивает всё),
@@ -199,7 +228,12 @@ const dApplyImageSubtract = (lowName) => ({
 });
 
 // Сгруппировать выделенные/текущие слои
-const dGroup = () => ({ _obj: "make", _target: [{ _ref: "layerSection" }], ...dontDisplay });
+const dGroup = () => ({
+  _obj: "make",
+  _target: [{ _ref: "layerSection" }],
+  from: { _ref: "layer", _enum: "ordinal", _value: "targetEnum" },
+  ...dontDisplay,
+});
 
 const dSelectBackLayer = () => ({
   _obj: "select",
@@ -217,14 +251,14 @@ const dChannelToSelection = () => ({
 });
 
 const dAddChannel = () => ({
-  _obj: "add",
+  _obj: "addTo",
   _target: [{ _ref: "channel", _property: "selection" }],
   to: { _ref: "channel", _enum: "channel", _value: "RGB" },
   ...dontDisplay,
 });
 
 const dSubtractChannel = () => ({
-  _obj: "subtract",
+  _obj: "subtractFrom",
   _target: [{ _ref: "channel", _property: "selection" }],
   to: { _ref: "channel", _enum: "channel", _value: "RGB" },
   ...dontDisplay,
@@ -419,7 +453,9 @@ const Scripts = {
   /* Selections & Masking */
   Luminosity: () =>
     modal("Luminosity", async () => {
-      await bp([dChannelToSelection(), dIntersectRGB()]);
+      // Только загрузка светов RGB-канала. Intersect с самим собой в PS27
+      // отдаёт "parameters not currently valid" и роняет UXP-процесс.
+      await bp([dChannelToSelection()]);
     }),
   SelPlus: () => bp([dAddChannel()]),
   SelMinus: () => bp([dSubtractChannel()]),
@@ -783,7 +819,16 @@ globalThis.openUrl = openUrl;
 
 /* ---------- Точка входа ---------- */
 
+let _lastRun = { name: "", t: 0 };
+
 function runScript(name) {
+  // защита от двойного срабатывания клика (UXP иногда шлёт событие дважды)
+  const now = Date.now();
+  if (name === _lastRun.name && now - _lastRun.t < 900) {
+    logLine("SKIP-dup " + name);
+    return;
+  }
+  _lastRun = { name, t: now };
   if (name.startsWith("__tool:")) {
     core
       .executeAsModal(async () => {
@@ -799,14 +844,23 @@ function runScript(name) {
     return;
   }
   // ВСЯ команда целиком — в модальном контексте, как в оригинальной панели
+  // Ошибки ловим ВНУТРИ модальной функции: если дать ей упасть,
+  // Photoshop показывает модальный диалог "The command ... is not currently available"
+  logLine("RUN " + name);
   core
     .executeAsModal(async () => {
-      await fn();
+      try {
+        await fn();
+        uiStatus("Done: " + name);
+        logLine("OK  " + name);
+      } catch (e) {
+        console.error(`[${name}]`, e);
+        uiStatus("Error: " + (e && e.message ? e.message : name));
+        logLine("ERR " + name + " :: " + (e && e.message) + " :: " + (e && e.stack ? e.stack.split("\n").slice(0, 4).join(" | ") : ""));
+      }
     }, { commandName: "My Retouch: " + name })
-    .then(() => uiStatus("Done: " + name))
     .catch((e) => {
-      console.error(`[${name}]`, e);
-      uiStatus("Error: " + (e && e.message ? e.message : name));
+      logLine("ERR-outer " + name + " :: " + (e && e.message));
     });
 }
 
@@ -818,11 +872,16 @@ globalThis.runScript = runScript;
 document.addEventListener("click", (e) => {
   const cmdEl = e.target.closest("[data-cmd]");
   if (cmdEl) {
+    logLine("CLICK " + cmdEl.getAttribute("data-cmd"));
     runScript(cmdEl.getAttribute("data-cmd"));
     return;
   }
   const urlEl = e.target.closest("[data-url]");
   if (urlEl) {
     openUrl(urlEl.getAttribute("data-url"));
+    return;
   }
+  // клик мимо команд — логируем, чтобы отличить «клик не дошёл» от «клик мимо»
+  const t = e.target;
+  logLine("MISS " + (t && t.tagName) + "." + (t && t.className) + " #" + (t && t.id));
 });
