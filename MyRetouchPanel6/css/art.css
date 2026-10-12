@@ -1,0 +1,503 @@
+﻿/* GENERATED from br6-button-art v2 MANIFEST - regenerate, do not hand-edit.
+   2x art drawn at 1x size (SOT rule 2); explicit background-size on every rule (rule 3). */
+.art { flex: 0 0 auto; cursor: pointer; background-repeat: no-repeat; background-position: 0 0; }
+.hdr { cursor: default; }
+.a-DB-Brush-L { width: 26px; height: 26px; background-image: url("../art/DB-Brush-L-light-idle-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-DB-Brush-L { background-image: url("../art/DB-Brush-L-dark-idle-2x.png"); background-size: 26px 26px; }
+.a-DB-Brush-L:hover { background-image: url("../art/DB-Brush-L-light-hover-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-DB-Brush-L:hover { background-image: url("../art/DB-Brush-L-dark-hover-2x.png"); background-size: 26px 26px; }
+.a-DB-Brush-S { width: 26px; height: 26px; background-image: url("../art/DB-Brush-S-light-idle-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-DB-Brush-S { background-image: url("../art/DB-Brush-S-dark-idle-2x.png"); background-size: 26px 26px; }
+.a-DB-Brush-S:hover { background-image: url("../art/DB-Brush-S-light-hover-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-DB-Brush-S:hover { background-image: url("../art/DB-Brush-S-dark-hover-2x.png"); background-size: 26px 26px; }
+.a-DB-Burn { width: 39px; height: 26px; background-image: url("../art/DB-Burn-light-idle-2x.png"); background-size: 39px 26px; }
+body.theme-dark .a-DB-Burn { background-image: url("../art/DB-Burn-dark-idle-2x.png"); background-size: 39px 26px; }
+.a-DB-Burn:hover { background-image: url("../art/DB-Burn-light-hover-2x.png"); background-size: 39px 26px; }
+body.theme-dark .a-DB-Burn:hover { background-image: url("../art/DB-Burn-dark-hover-2x.png"); background-size: 39px 26px; }
+.a-DB-Curves-Set { width: 90px; height: 26px; background-image: url("../art/DB-Curves-Set-light-idle-2x.png"); background-size: 90px 26px; }
+body.theme-dark .a-DB-Curves-Set { background-image: url("../art/DB-Curves-Set-dark-idle-2x.png"); background-size: 90px 26px; }
+.a-DB-Curves-Set:hover { background-image: url("../art/DB-Curves-Set-light-hover-2x.png"); background-size: 90px 26px; }
+body.theme-dark .a-DB-Curves-Set:hover { background-image: url("../art/DB-Curves-Set-dark-hover-2x.png"); background-size: 90px 26px; }
+.a-DB-Dodge { width: 44px; height: 26px; background-image: url("../art/DB-Dodge-light-idle-2x.png"); background-size: 44px 26px; }
+body.theme-dark .a-DB-Dodge { background-image: url("../art/DB-Dodge-dark-idle-2x.png"); background-size: 44px 26px; }
+.a-DB-Dodge:hover { background-image: url("../art/DB-Dodge-light-hover-2x.png"); background-size: 44px 26px; }
+body.theme-dark .a-DB-Dodge:hover { background-image: url("../art/DB-Dodge-dark-hover-2x.png"); background-size: 44px 26px; }
+.a-DB-Gray-Layer { width: 26px; height: 26px; background-image: url("../art/DB-Gray-Layer-light-idle-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-DB-Gray-Layer { background-image: url("../art/DB-Gray-Layer-dark-idle-2x.png"); background-size: 26px 26px; }
+.a-DB-Gray-Layer:hover { background-image: url("../art/DB-Gray-Layer-light-hover-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-DB-Gray-Layer:hover { background-image: url("../art/DB-Gray-Layer-dark-hover-2x.png"); background-size: 26px 26px; }
+.a-DB-Gray-Set { width: 92px; height: 26px; background-image: url("../art/DB-Gray-Set-light-idle-2x.png"); background-size: 92px 26px; }
+body.theme-dark .a-DB-Gray-Set { background-image: url("../art/DB-Gray-Set-dark-idle-2x.png"); background-size: 92px 26px; }
+.a-DB-Gray-Set:hover { background-image: url("../art/DB-Gray-Set-light-hover-2x.png"); background-size: 92px 26px; }
+body.theme-dark .a-DB-Gray-Set:hover { background-image: url("../art/DB-Gray-Set-dark-hover-2x.png"); background-size: 92px 26px; }
+.a-DB-Visual-Aid { width: 64px; height: 26px; background-image: url("../art/DB-Visual-Aid-light-idle-2x.png"); background-size: 64px 26px; }
+body.theme-dark .a-DB-Visual-Aid { background-image: url("../art/DB-Visual-Aid-dark-idle-2x.png"); background-size: 64px 26px; }
+.a-DB-Visual-Aid:hover { background-image: url("../art/DB-Visual-Aid-light-hover-2x.png"); background-size: 64px 26px; }
+body.theme-dark .a-DB-Visual-Aid:hover { background-image: url("../art/DB-Visual-Aid-dark-hover-2x.png"); background-size: 64px 26px; }
+.a-Face-Anti-Pink { width: 67px; height: 26px; background-image: url("../art/Face-Anti-Pink-light-idle-2x.png"); background-size: 67px 26px; }
+body.theme-dark .a-Face-Anti-Pink { background-image: url("../art/Face-Anti-Pink-dark-idle-2x.png"); background-size: 67px 26px; }
+.a-Face-Anti-Pink:hover { background-image: url("../art/Face-Anti-Pink-light-hover-2x.png"); background-size: 67px 26px; }
+body.theme-dark .a-Face-Anti-Pink:hover { background-image: url("../art/Face-Anti-Pink-dark-hover-2x.png"); background-size: 67px 26px; }
+.a-Face-Anti-Redness { width: 84px; height: 26px; background-image: url("../art/Face-Anti-Redness-light-idle-2x.png"); background-size: 84px 26px; }
+body.theme-dark .a-Face-Anti-Redness { background-image: url("../art/Face-Anti-Redness-dark-idle-2x.png"); background-size: 84px 26px; }
+.a-Face-Anti-Redness:hover { background-image: url("../art/Face-Anti-Redness-light-hover-2x.png"); background-size: 84px 26px; }
+body.theme-dark .a-Face-Anti-Redness:hover { background-image: url("../art/Face-Anti-Redness-dark-hover-2x.png"); background-size: 84px 26px; }
+.a-Face-Eyes { width: 43px; height: 26px; background-image: url("../art/Face-Eyes-light-idle-2x.png"); background-size: 43px 26px; }
+body.theme-dark .a-Face-Eyes { background-image: url("../art/Face-Eyes-dark-idle-2x.png"); background-size: 43px 26px; }
+.a-Face-Eyes:hover { background-image: url("../art/Face-Eyes-light-hover-2x.png"); background-size: 43px 26px; }
+body.theme-dark .a-Face-Eyes:hover { background-image: url("../art/Face-Eyes-dark-hover-2x.png"); background-size: 43px 26px; }
+.a-Face-Glow { width: 41px; height: 26px; background-image: url("../art/Face-Glow-light-idle-2x.png"); background-size: 41px 26px; }
+body.theme-dark .a-Face-Glow { background-image: url("../art/Face-Glow-dark-idle-2x.png"); background-size: 41px 26px; }
+.a-Face-Glow:hover { background-image: url("../art/Face-Glow-light-hover-2x.png"); background-size: 41px 26px; }
+body.theme-dark .a-Face-Glow:hover { background-image: url("../art/Face-Glow-dark-hover-2x.png"); background-size: 41px 26px; }
+.a-Face-Hair-Brush-1 { width: 30px; height: 26px; background-image: url("../art/Face-Hair-Brush-1-light-idle-2x.png"); background-size: 30px 26px; }
+body.theme-dark .a-Face-Hair-Brush-1 { background-image: url("../art/Face-Hair-Brush-1-dark-idle-2x.png"); background-size: 30px 26px; }
+.a-Face-Hair-Brush-1:hover { background-image: url("../art/Face-Hair-Brush-1-light-hover-2x.png"); background-size: 30px 26px; }
+body.theme-dark .a-Face-Hair-Brush-1:hover { background-image: url("../art/Face-Hair-Brush-1-dark-hover-2x.png"); background-size: 30px 26px; }
+.a-Face-Hair-Brush-2 { width: 30px; height: 26px; background-image: url("../art/Face-Hair-Brush-2-light-idle-2x.png"); background-size: 30px 26px; }
+body.theme-dark .a-Face-Hair-Brush-2 { background-image: url("../art/Face-Hair-Brush-2-dark-idle-2x.png"); background-size: 30px 26px; }
+.a-Face-Hair-Brush-2:hover { background-image: url("../art/Face-Hair-Brush-2-light-hover-2x.png"); background-size: 30px 26px; }
+body.theme-dark .a-Face-Hair-Brush-2:hover { background-image: url("../art/Face-Hair-Brush-2-dark-hover-2x.png"); background-size: 30px 26px; }
+.a-Face-Hair-Highlights { width: 114px; height: 26px; background-image: url("../art/Face-Hair-Highlights-light-idle-2x.png"); background-size: 114px 26px; }
+body.theme-dark .a-Face-Hair-Highlights { background-image: url("../art/Face-Hair-Highlights-dark-idle-2x.png"); background-size: 114px 26px; }
+.a-Face-Hair-Highlights:hover { background-image: url("../art/Face-Hair-Highlights-light-hover-2x.png"); background-size: 114px 26px; }
+body.theme-dark .a-Face-Hair-Highlights:hover { background-image: url("../art/Face-Hair-Highlights-dark-hover-2x.png"); background-size: 114px 26px; }
+.a-Face-Skin-Tone { width: 67px; height: 26px; background-image: url("../art/Face-Skin-Tone-light-idle-2x.png"); background-size: 67px 26px; }
+body.theme-dark .a-Face-Skin-Tone { background-image: url("../art/Face-Skin-Tone-dark-idle-2x.png"); background-size: 67px 26px; }
+.a-Face-Skin-Tone:hover { background-image: url("../art/Face-Skin-Tone-light-hover-2x.png"); background-size: 67px 26px; }
+body.theme-dark .a-Face-Skin-Tone:hover { background-image: url("../art/Face-Skin-Tone-dark-hover-2x.png"); background-size: 67px 26px; }
+.a-Face-Teeth { width: 48px; height: 26px; background-image: url("../art/Face-Teeth-light-idle-2x.png"); background-size: 48px 26px; }
+body.theme-dark .a-Face-Teeth { background-image: url("../art/Face-Teeth-dark-idle-2x.png"); background-size: 48px 26px; }
+.a-Face-Teeth:hover { background-image: url("../art/Face-Teeth-light-hover-2x.png"); background-size: 48px 26px; }
+body.theme-dark .a-Face-Teeth:hover { background-image: url("../art/Face-Teeth-dark-hover-2x.png"); background-size: 48px 26px; }
+.a-Fin-Image-Size { width: 66px; height: 26px; background-image: url("../art/Fin-Image-Size-light-idle-2x.png"); background-size: 66px 26px; }
+body.theme-dark .a-Fin-Image-Size { background-image: url("../art/Fin-Image-Size-dark-idle-2x.png"); background-size: 66px 26px; }
+.a-Fin-Image-Size:hover { background-image: url("../art/Fin-Image-Size-light-hover-2x.png"); background-size: 66px 26px; }
+body.theme-dark .a-Fin-Image-Size:hover { background-image: url("../art/Fin-Image-Size-dark-hover-2x.png"); background-size: 66px 26px; }
+.a-Fin-Flatten-Image { width: 52px; height: 26px; background-image: url("../art/Fin-Flatten-Image-light-idle-2x.png"); background-size: 52px 26px; }
+body.theme-dark .a-Fin-Flatten-Image { background-image: url("../art/Fin-Flatten-Image-dark-idle-2x.png"); background-size: 52px 26px; }
+.a-Fin-Flatten-Image:hover { background-image: url("../art/Fin-Flatten-Image-light-hover-2x.png"); background-size: 52px 26px; }
+body.theme-dark .a-Fin-Flatten-Image:hover { background-image: url("../art/Fin-Flatten-Image-dark-hover-2x.png"); background-size: 52px 26px; }
+.a-Fin-Over-Saturation { width: 56px; height: 26px; background-image: url("../art/Fin-Over-Saturation-light-idle-2x.png"); background-size: 56px 26px; }
+body.theme-dark .a-Fin-Over-Saturation { background-image: url("../art/Fin-Over-Saturation-dark-idle-2x.png"); background-size: 56px 26px; }
+.a-Fin-Over-Saturation:hover { background-image: url("../art/Fin-Over-Saturation-light-hover-2x.png"); background-size: 56px 26px; }
+body.theme-dark .a-Fin-Over-Saturation:hover { background-image: url("../art/Fin-Over-Saturation-dark-hover-2x.png"); background-size: 56px 26px; }
+.a-Footer-WWW { width: 182px; height: 22px; background-image: url("../art/Footer-WWW-light-idle-2x.png"); background-size: 182px 22px; }
+body.theme-dark .a-Footer-WWW { background-image: url("../art/Footer-WWW-dark-idle-2x.png"); background-size: 182px 22px; }
+.a-Link-Instagram { width: 28px; height: 26px; background-image: url("../art/Link-Instagram-light-idle-2x.png"); background-size: 28px 26px; }
+body.theme-dark .a-Link-Instagram { background-image: url("../art/Link-Instagram-dark-idle-2x.png"); background-size: 28px 26px; }
+.a-Link-Instagram:hover { background-image: url("../art/Link-Instagram-light-hover-2x.png"); background-size: 28px 26px; }
+body.theme-dark .a-Link-Instagram:hover { background-image: url("../art/Link-Instagram-dark-hover-2x.png"); background-size: 28px 26px; }
+.a-Link-Support { width: 49px; height: 26px; background-image: url("../art/Link-Support-light-idle-2x.png"); background-size: 49px 26px; }
+body.theme-dark .a-Link-Support { background-image: url("../art/Link-Support-dark-idle-2x.png"); background-size: 49px 26px; }
+.a-Link-Support:hover { background-image: url("../art/Link-Support-light-hover-2x.png"); background-size: 49px 26px; }
+body.theme-dark .a-Link-Support:hover { background-image: url("../art/Link-Support-dark-hover-2x.png"); background-size: 49px 26px; }
+.a-Link-Tutorials { width: 28px; height: 26px; background-image: url("../art/Link-Tutorials-light-idle-2x.png"); background-size: 28px 26px; }
+body.theme-dark .a-Link-Tutorials { background-image: url("../art/Link-Tutorials-dark-idle-2x.png"); background-size: 28px 26px; }
+.a-Link-Tutorials:hover { background-image: url("../art/Link-Tutorials-light-hover-2x.png"); background-size: 28px 26px; }
+body.theme-dark .a-Link-Tutorials:hover { background-image: url("../art/Link-Tutorials-dark-hover-2x.png"); background-size: 28px 26px; }
+.a-Link-Your-Account { width: 65px; height: 26px; background-image: url("../art/Link-Your-Account-light-idle-2x.png"); background-size: 65px 26px; }
+body.theme-dark .a-Link-Your-Account { background-image: url("../art/Link-Your-Account-dark-idle-2x.png"); background-size: 65px 26px; }
+.a-Link-Your-Account:hover { background-image: url("../art/Link-Your-Account-light-hover-2x.png"); background-size: 65px 26px; }
+body.theme-dark .a-Link-Your-Account:hover { background-image: url("../art/Link-Your-Account-dark-hover-2x.png"); background-size: 65px 26px; }
+.a-My-120-Size { width: 27px; height: 28px; background-image: url("../art/My-120-Size-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-120-Size { background-image: url("../art/My-120-Size-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-My-120-Size:hover { background-image: url("../art/My-120-Size-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-120-Size:hover { background-image: url("../art/My-120-Size-dark-hover-2x.png"); background-size: 27px 28px; }
+.a-My-Color-Balance { width: 27px; height: 28px; background-image: url("../art/My-Color-Balance-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Color-Balance { background-image: url("../art/My-Color-Balance-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-My-Color-Balance:hover { background-image: url("../art/My-Color-Balance-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Color-Balance:hover { background-image: url("../art/My-Color-Balance-dark-hover-2x.png"); background-size: 27px 28px; }
+.a-My-Curves { width: 27px; height: 28px; background-image: url("../art/My-Curves-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Curves { background-image: url("../art/My-Curves-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-My-Curves:hover { background-image: url("../art/My-Curves-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Curves:hover { background-image: url("../art/My-Curves-dark-hover-2x.png"); background-size: 27px 28px; }
+.a-My-Hue-Sat { width: 27px; height: 28px; background-image: url("../art/My-Hue-Sat-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Hue-Sat { background-image: url("../art/My-Hue-Sat-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-My-Hue-Sat:hover { background-image: url("../art/My-Hue-Sat-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Hue-Sat:hover { background-image: url("../art/My-Hue-Sat-dark-hover-2x.png"); background-size: 27px 28px; }
+.a-My-Levels { width: 27px; height: 28px; background-image: url("../art/My-Levels-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Levels { background-image: url("../art/My-Levels-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-My-Levels:hover { background-image: url("../art/My-Levels-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Levels:hover { background-image: url("../art/My-Levels-dark-hover-2x.png"); background-size: 27px 28px; }
+.a-My-New-Layer { width: 27px; height: 28px; background-image: url("../art/My-New-Layer-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-New-Layer { background-image: url("../art/My-New-Layer-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-My-New-Layer:hover { background-image: url("../art/My-New-Layer-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-New-Layer:hover { background-image: url("../art/My-New-Layer-dark-hover-2x.png"); background-size: 27px 28px; }
+.a-My-Save-As { width: 27px; height: 28px; background-image: url("../art/My-Save-As-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Save-As { background-image: url("../art/My-Save-As-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-My-Save-As:hover { background-image: url("../art/My-Save-As-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Save-As:hover { background-image: url("../art/My-Save-As-dark-hover-2x.png"); background-size: 27px 28px; }
+.a-My-Save-Web { width: 27px; height: 28px; background-image: url("../art/My-Save-Web-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Save-Web { background-image: url("../art/My-Save-Web-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-My-Save-Web:hover { background-image: url("../art/My-Save-Web-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Save-Web:hover { background-image: url("../art/My-Save-Web-dark-hover-2x.png"); background-size: 27px 28px; }
+.a-My-Selective-Color { width: 27px; height: 28px; background-image: url("../art/My-Selective-Color-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Selective-Color { background-image: url("../art/My-Selective-Color-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-My-Selective-Color:hover { background-image: url("../art/My-Selective-Color-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Selective-Color:hover { background-image: url("../art/My-Selective-Color-dark-hover-2x.png"); background-size: 27px 28px; }
+.a-My-Sharpen { width: 27px; height: 28px; background-image: url("../art/My-Sharpen-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Sharpen { background-image: url("../art/My-Sharpen-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-My-Sharpen:hover { background-image: url("../art/My-Sharpen-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Sharpen:hover { background-image: url("../art/My-Sharpen-dark-hover-2x.png"); background-size: 27px 28px; }
+.a-My-Smart-Liquify { width: 27px; height: 28px; background-image: url("../art/My-Smart-Liquify-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Smart-Liquify { background-image: url("../art/My-Smart-Liquify-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-My-Smart-Liquify:hover { background-image: url("../art/My-Smart-Liquify-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Smart-Liquify:hover { background-image: url("../art/My-Smart-Liquify-dark-hover-2x.png"); background-size: 27px 28px; }
+.a-My-Stamp-Layers { width: 27px; height: 28px; background-image: url("../art/My-Stamp-Layers-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Stamp-Layers { background-image: url("../art/My-Stamp-Layers-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-My-Stamp-Layers:hover { background-image: url("../art/My-Stamp-Layers-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-My-Stamp-Layers:hover { background-image: url("../art/My-Stamp-Layers-dark-hover-2x.png"); background-size: 27px 28px; }
+.a-Sel-Add { width: 25px; height: 25px; background-image: url("../art/Sel-Add-light-idle-2x.png"); background-size: 25px 25px; }
+body.theme-dark .a-Sel-Add { background-image: url("../art/Sel-Add-dark-idle-2x.png"); background-size: 25px 25px; }
+.a-Sel-Add:hover { background-image: url("../art/Sel-Add-light-hover-2x.png"); background-size: 25px 25px; }
+body.theme-dark .a-Sel-Add:hover { background-image: url("../art/Sel-Add-dark-hover-2x.png"); background-size: 25px 25px; }
+.a-Sel-Auto-Skin-Mask { width: 26px; height: 26px; background-image: url("../art/Sel-Auto-Skin-Mask-light-idle-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-Sel-Auto-Skin-Mask { background-image: url("../art/Sel-Auto-Skin-Mask-dark-idle-2x.png"); background-size: 26px 26px; }
+.a-Sel-Auto-Skin-Mask:hover { background-image: url("../art/Sel-Auto-Skin-Mask-light-hover-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-Sel-Auto-Skin-Mask:hover { background-image: url("../art/Sel-Auto-Skin-Mask-dark-hover-2x.png"); background-size: 26px 26px; }
+.a-Sel-People-Eyes { width: 26px; height: 26px; background-image: url("../art/Sel-People-Eyes-light-idle-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-Sel-People-Eyes { background-image: url("../art/Sel-People-Eyes-dark-idle-2x.png"); background-size: 26px 26px; }
+.a-Sel-People-Eyes:hover { background-image: url("../art/Sel-People-Eyes-light-hover-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-Sel-People-Eyes:hover { background-image: url("../art/Sel-People-Eyes-dark-hover-2x.png"); background-size: 26px 26px; }
+.a-Sel-People-Lips { width: 26px; height: 26px; background-image: url("../art/Sel-People-Lips-light-idle-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-Sel-People-Lips { background-image: url("../art/Sel-People-Lips-dark-idle-2x.png"); background-size: 26px 26px; }
+.a-Sel-People-Lips:hover { background-image: url("../art/Sel-People-Lips-light-hover-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-Sel-People-Lips:hover { background-image: url("../art/Sel-People-Lips-dark-hover-2x.png"); background-size: 26px 26px; }
+.a-Sel-People-Teeth { width: 26px; height: 26px; background-image: url("../art/Sel-People-Teeth-light-idle-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-Sel-People-Teeth { background-image: url("../art/Sel-People-Teeth-dark-idle-2x.png"); background-size: 26px 26px; }
+.a-Sel-People-Teeth:hover { background-image: url("../art/Sel-People-Teeth-light-hover-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-Sel-People-Teeth:hover { background-image: url("../art/Sel-People-Teeth-dark-hover-2x.png"); background-size: 26px 26px; }
+.a-Sel-People-Body { width: 26px; height: 26px; background-image: url("../art/Sel-People-Body-light-idle-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-Sel-People-Body { background-image: url("../art/Sel-People-Body-dark-idle-2x.png"); background-size: 26px 26px; }
+.a-Sel-People-Body:hover { background-image: url("../art/Sel-People-Body-light-hover-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-Sel-People-Body:hover { background-image: url("../art/Sel-People-Body-dark-hover-2x.png"); background-size: 26px 26px; }
+.a-Sel-People-Hair { width: 26px; height: 26px; background-image: url("../art/Sel-People-Hair-light-idle-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-Sel-People-Hair { background-image: url("../art/Sel-People-Hair-dark-idle-2x.png"); background-size: 26px 26px; }
+.a-Sel-People-Hair:hover { background-image: url("../art/Sel-People-Hair-light-hover-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-Sel-People-Hair:hover { background-image: url("../art/Sel-People-Hair-dark-hover-2x.png"); background-size: 26px 26px; }
+.a-Sel-Invert { width: 50px; height: 26px; background-image: url("../art/Sel-Invert-light-idle-2x.png"); background-size: 50px 26px; }
+body.theme-dark .a-Sel-Invert { background-image: url("../art/Sel-Invert-dark-idle-2x.png"); background-size: 50px 26px; }
+.a-Sel-Invert:hover { background-image: url("../art/Sel-Invert-light-hover-2x.png"); background-size: 50px 26px; }
+body.theme-dark .a-Sel-Invert:hover { background-image: url("../art/Sel-Invert-dark-hover-2x.png"); background-size: 50px 26px; }
+.a-Sel-Lasso { width: 27px; height: 26px; background-image: url("../art/Sel-Lasso-light-idle-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Sel-Lasso { background-image: url("../art/Sel-Lasso-dark-idle-2x.png"); background-size: 27px 26px; }
+.a-Sel-Lasso:hover { background-image: url("../art/Sel-Lasso-light-hover-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Sel-Lasso:hover { background-image: url("../art/Sel-Lasso-dark-hover-2x.png"); background-size: 27px 26px; }
+.a-Sel-Luminosity { width: 70px; height: 26px; background-image: url("../art/Sel-Luminosity-light-idle-2x.png"); background-size: 70px 26px; }
+body.theme-dark .a-Sel-Luminosity { background-image: url("../art/Sel-Luminosity-dark-idle-2x.png"); background-size: 70px 26px; }
+.a-Sel-Luminosity:hover { background-image: url("../art/Sel-Luminosity-light-hover-2x.png"); background-size: 70px 26px; }
+body.theme-dark .a-Sel-Luminosity:hover { background-image: url("../art/Sel-Luminosity-dark-hover-2x.png"); background-size: 70px 26px; }
+.a-Sel-Marquee { width: 27px; height: 26px; background-image: url("../art/Sel-Marquee-light-idle-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Sel-Marquee { background-image: url("../art/Sel-Marquee-dark-idle-2x.png"); background-size: 27px 26px; }
+.a-Sel-Marquee:hover { background-image: url("../art/Sel-Marquee-light-hover-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Sel-Marquee:hover { background-image: url("../art/Sel-Marquee-dark-hover-2x.png"); background-size: 27px 26px; }
+.a-Sel-Midtones { width: 35px; height: 26px; background-image: url("../art/Sel-Midtones-light-idle-2x.png"); background-size: 35px 26px; }
+body.theme-dark .a-Sel-Midtones { background-image: url("../art/Sel-Midtones-dark-idle-2x.png"); background-size: 35px 26px; }
+.a-Sel-Midtones:hover { background-image: url("../art/Sel-Midtones-light-hover-2x.png"); background-size: 35px 26px; }
+body.theme-dark .a-Sel-Midtones:hover { background-image: url("../art/Sel-Midtones-dark-hover-2x.png"); background-size: 35px 26px; }
+.a-Sel-Object-Selection { width: 27px; height: 26px; background-image: url("../art/Sel-Object-Selection-light-idle-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Sel-Object-Selection { background-image: url("../art/Sel-Object-Selection-dark-idle-2x.png"); background-size: 27px 26px; }
+.a-Sel-Object-Selection:hover { background-image: url("../art/Sel-Object-Selection-light-hover-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Sel-Object-Selection:hover { background-image: url("../art/Sel-Object-Selection-dark-hover-2x.png"); background-size: 27px 26px; }
+.a-Sel-Pen { width: 27px; height: 26px; background-image: url("../art/Sel-Pen-light-idle-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Sel-Pen { background-image: url("../art/Sel-Pen-dark-idle-2x.png"); background-size: 27px 26px; }
+.a-Sel-Pen:hover { background-image: url("../art/Sel-Pen-light-hover-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Sel-Pen:hover { background-image: url("../art/Sel-Pen-dark-hover-2x.png"); background-size: 27px 26px; }
+.a-Sel-Select-Subject { width: 27px; height: 26px; background-image: url("../art/Sel-Select-Subject-light-idle-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Sel-Select-Subject { background-image: url("../art/Sel-Select-Subject-dark-idle-2x.png"); background-size: 27px 26px; }
+.a-Sel-Select-Subject:hover { background-image: url("../art/Sel-Select-Subject-light-hover-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Sel-Select-Subject:hover { background-image: url("../art/Sel-Select-Subject-dark-hover-2x.png"); background-size: 27px 26px; }
+.a-Sel-Selection-Brush { width: 27px; height: 26px; background-image: url("../art/Sel-Selection-Brush-light-idle-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Sel-Selection-Brush { background-image: url("../art/Sel-Selection-Brush-dark-idle-2x.png"); background-size: 27px 26px; }
+.a-Sel-Selection-Brush:hover { background-image: url("../art/Sel-Selection-Brush-light-hover-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Sel-Selection-Brush:hover { background-image: url("../art/Sel-Selection-Brush-dark-hover-2x.png"); background-size: 27px 26px; }
+.a-Sel-Subtract { width: 25px; height: 25px; background-image: url("../art/Sel-Subtract-light-idle-2x.png"); background-size: 25px 25px; }
+body.theme-dark .a-Sel-Subtract { background-image: url("../art/Sel-Subtract-dark-idle-2x.png"); background-size: 25px 25px; }
+.a-Sel-Subtract:hover { background-image: url("../art/Sel-Subtract-light-hover-2x.png"); background-size: 25px 25px; }
+body.theme-dark .a-Sel-Subtract:hover { background-image: url("../art/Sel-Subtract-dark-hover-2x.png"); background-size: 25px 25px; }
+.a-Skin-Add-Texture { width: 74px; height: 26px; background-image: url("../art/Skin-Add-Texture-light-idle-2x.png"); background-size: 74px 26px; }
+body.theme-dark .a-Skin-Add-Texture { background-image: url("../art/Skin-Add-Texture-dark-idle-2x.png"); background-size: 74px 26px; }
+.a-Skin-Add-Texture:hover { background-image: url("../art/Skin-Add-Texture-light-hover-2x.png"); background-size: 74px 26px; }
+body.theme-dark .a-Skin-Add-Texture:hover { background-image: url("../art/Skin-Add-Texture-dark-hover-2x.png"); background-size: 74px 26px; }
+.a-Skin-Custom { width: 61px; height: 26px; background-image: url("../art/Skin-Custom-light-idle-2x.png"); background-size: 61px 26px; }
+body.theme-dark .a-Skin-Custom { background-image: url("../art/Skin-Custom-dark-idle-2x.png"); background-size: 61px 26px; }
+.a-Skin-Custom:hover { background-image: url("../art/Skin-Custom-light-hover-2x.png"); background-size: 61px 26px; }
+body.theme-dark .a-Skin-Custom:hover { background-image: url("../art/Skin-Custom-dark-hover-2x.png"); background-size: 61px 26px; }
+.a-Skin-Median { width: 61px; height: 26px; background-image: url("../art/Skin-Median-light-idle-2x.png"); background-size: 61px 26px; }
+body.theme-dark .a-Skin-Median { background-image: url("../art/Skin-Median-dark-idle-2x.png"); background-size: 61px 26px; }
+.a-Skin-Median:hover { background-image: url("../art/Skin-Median-light-hover-2x.png"); background-size: 61px 26px; }
+body.theme-dark .a-Skin-Median:hover { background-image: url("../art/Skin-Median-dark-hover-2x.png"); background-size: 61px 26px; }
+.a-Skin-New-Skin { width: 89px; height: 26px; background-image: url("../art/Skin-New-Skin-light-idle-2x.png"); background-size: 89px 26px; }
+body.theme-dark .a-Skin-New-Skin { background-image: url("../art/Skin-New-Skin-dark-idle-2x.png"); background-size: 89px 26px; }
+.a-Skin-New-Skin:hover { background-image: url("../art/Skin-New-Skin-light-hover-2x.png"); background-size: 89px 26px; }
+body.theme-dark .a-Skin-New-Skin:hover { background-image: url("../art/Skin-New-Skin-dark-hover-2x.png"); background-size: 89px 26px; }
+.a-Skin-Remove-Hairs { width: 74px; height: 26px; background-image: url("../art/Skin-Remove-Hairs-light-idle-2x.png"); background-size: 74px 26px; }
+body.theme-dark .a-Skin-Remove-Hairs { background-image: url("../art/Skin-Remove-Hairs-dark-idle-2x.png"); background-size: 74px 26px; }
+.a-Skin-Remove-Hairs:hover { background-image: url("../art/Skin-Remove-Hairs-light-hover-2x.png"); background-size: 74px 26px; }
+body.theme-dark .a-Skin-Remove-Hairs:hover { background-image: url("../art/Skin-Remove-Hairs-dark-hover-2x.png"); background-size: 74px 26px; }
+.a-Slot-A { width: 27px; height: 26px; background-image: url("../art/Slot-A-light-idle-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Slot-A { background-image: url("../art/Slot-A-dark-idle-2x.png"); background-size: 27px 26px; }
+.a-Slot-A:hover { background-image: url("../art/Slot-A-light-hover-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Slot-A:hover { background-image: url("../art/Slot-A-dark-hover-2x.png"); background-size: 27px 26px; }
+.a-Slot-B { width: 27px; height: 26px; background-image: url("../art/Slot-B-light-idle-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Slot-B { background-image: url("../art/Slot-B-dark-idle-2x.png"); background-size: 27px 26px; }
+.a-Slot-B:hover { background-image: url("../art/Slot-B-light-hover-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Slot-B:hover { background-image: url("../art/Slot-B-dark-hover-2x.png"); background-size: 27px 26px; }
+.a-Slot-C { width: 27px; height: 26px; background-image: url("../art/Slot-C-light-idle-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Slot-C { background-image: url("../art/Slot-C-dark-idle-2x.png"); background-size: 27px 26px; }
+.a-Slot-C:hover { background-image: url("../art/Slot-C-light-hover-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Slot-C:hover { background-image: url("../art/Slot-C-dark-hover-2x.png"); background-size: 27px 26px; }
+.a-Slot-D { width: 27px; height: 26px; background-image: url("../art/Slot-D-light-idle-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Slot-D { background-image: url("../art/Slot-D-dark-idle-2x.png"); background-size: 27px 26px; }
+.a-Slot-D:hover { background-image: url("../art/Slot-D-light-hover-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Slot-D:hover { background-image: url("../art/Slot-D-dark-hover-2x.png"); background-size: 27px 26px; }
+.a-Slot-E { width: 27px; height: 26px; background-image: url("../art/Slot-E-light-idle-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Slot-E { background-image: url("../art/Slot-E-dark-idle-2x.png"); background-size: 27px 26px; }
+.a-Slot-E:hover { background-image: url("../art/Slot-E-light-hover-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Slot-E:hover { background-image: url("../art/Slot-E-dark-hover-2x.png"); background-size: 27px 26px; }
+.a-Slot-F { width: 27px; height: 26px; background-image: url("../art/Slot-F-light-idle-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Slot-F { background-image: url("../art/Slot-F-dark-idle-2x.png"); background-size: 27px 26px; }
+.a-Slot-F:hover { background-image: url("../art/Slot-F-light-hover-2x.png"); background-size: 27px 26px; }
+body.theme-dark .a-Slot-F:hover { background-image: url("../art/Slot-F-dark-hover-2x.png"); background-size: 27px 26px; }
+/* light/dark: shows the mode it switches TO (moon on light, sun on dark) */
+/* Light / dark toggle (JKM, 2026-10-03): sun on the left, moon on the right; the knob sits on
+   the sun in light and slides to the moon in dark (body.theme-dark). */
+.theme-toggle { position: relative; width: 36px; height: 18px; background-image: url("../art/Toggle-Theme-Track-light-idle-2x.png"); background-size: 36px 18px; }
+.theme-toggle:hover { background-image: url("../art/Toggle-Theme-Track-light-hover-2x.png"); background-size: 36px 18px; }
+.tt-knob { position: absolute; top: 0; left: 0; width: 18px; height: 18px; background-repeat: no-repeat; background-image: url("../art/Toggle-Theme-Knob-light-2x.png"); background-size: 18px 18px; transition: left 0.15s; }
+body.theme-dark .theme-toggle { background-image: url("../art/Toggle-Theme-Track-dark-idle-2x.png"); background-size: 36px 18px; }
+body.theme-dark .theme-toggle:hover { background-image: url("../art/Toggle-Theme-Track-dark-hover-2x.png"); background-size: 36px 18px; }
+body.theme-dark .tt-knob { left: 18px; background-image: url("../art/Toggle-Theme-Knob-dark-2x.png"); }
+.a-Icon-Reset { width: 18px; height: 18px; background-image: url("../art/Icon-Reset-light-idle-2x.png"); background-size: 18px 18px; }
+.a-Icon-Reset:hover { background-image: url("../art/Icon-Reset-light-hover-2x.png"); background-size: 18px 18px; }
+body.theme-dark .a-Icon-Reset { background-image: url("../art/Icon-Reset-dark-idle-2x.png"); background-size: 18px 18px; }
+body.theme-dark .a-Icon-Reset:hover { background-image: url("../art/Icon-Reset-dark-hover-2x.png"); background-size: 18px 18px; }
+.a-Tool-AI-Select { width: 27px; height: 28px; background-image: url("../art/Tool-AI-Select-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-Tool-AI-Select { background-image: url("../art/Tool-AI-Select-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-Tool-AI-Select:hover { background-image: url("../art/Tool-AI-Select-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-Tool-AI-Select:hover { background-image: url("../art/Tool-AI-Select-dark-hover-2x.png"); background-size: 27px 28px; }
+.a-Tool-Brush { width: 27px; height: 28px; background-image: url("../art/Tool-Brush-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-Tool-Brush { background-image: url("../art/Tool-Brush-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-Tool-Brush:hover { background-image: url("../art/Tool-Brush-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-Tool-Brush:hover { background-image: url("../art/Tool-Brush-dark-hover-2x.png"); background-size: 27px 28px; }
+.a-Tool-Clone-Stamp { width: 27px; height: 28px; background-image: url("../art/Tool-Clone-Stamp-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-Tool-Clone-Stamp { background-image: url("../art/Tool-Clone-Stamp-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-Tool-Clone-Stamp:hover { background-image: url("../art/Tool-Clone-Stamp-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-Tool-Clone-Stamp:hover { background-image: url("../art/Tool-Clone-Stamp-dark-hover-2x.png"); background-size: 27px 28px; }
+.a-Tool-Crop { width: 27px; height: 28px; background-image: url("../art/Tool-Crop-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-Tool-Crop { background-image: url("../art/Tool-Crop-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-Tool-Crop:hover { background-image: url("../art/Tool-Crop-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-Tool-Crop:hover { background-image: url("../art/Tool-Crop-dark-hover-2x.png"); background-size: 27px 28px; }
+.a-Tool-Remove { width: 27px; height: 28px; background-image: url("../art/Tool-Remove-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-Tool-Remove { background-image: url("../art/Tool-Remove-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-Tool-Remove:hover { background-image: url("../art/Tool-Remove-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-Tool-Remove:hover { background-image: url("../art/Tool-Remove-dark-hover-2x.png"); background-size: 27px 28px; }
+.a-Tool-Spot-Heal { width: 27px; height: 28px; background-image: url("../art/Tool-Spot-Heal-light-idle-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-Tool-Spot-Heal { background-image: url("../art/Tool-Spot-Heal-dark-idle-2x.png"); background-size: 27px 28px; }
+.a-Tool-Spot-Heal:hover { background-image: url("../art/Tool-Spot-Heal-light-hover-2x.png"); background-size: 27px 28px; }
+body.theme-dark .a-Tool-Spot-Heal:hover { background-image: url("../art/Tool-Spot-Heal-dark-hover-2x.png"); background-size: 27px 28px; }
+.h-Header-Dodge-and-Burn { width: 182px; height: 19px; background-image: url("../art/Header-Dodge-and-Burn-light-idle-2x.png"); background-size: 182px 19px; }
+body.theme-dark .h-Header-Dodge-and-Burn { background-image: url("../art/Header-Dodge-and-Burn-dark-idle-2x.png"); background-size: 182px 19px; }
+.h-Header-Skin-Work-and-FS { width: 182px; height: 19px; background-image: url("../art/Header-Skin-Work-and-FS-light-idle-2x.png"); background-size: 182px 19px; }
+body.theme-dark .h-Header-Skin-Work-and-FS { background-image: url("../art/Header-Skin-Work-and-FS-dark-idle-2x.png"); background-size: 182px 19px; }
+.h-Header-Selections-and-Masking { width: 182px; height: 19px; background-image: url("../art/Header-Selections-and-Masking-light-idle-2x.png"); background-size: 182px 19px; }
+body.theme-dark .h-Header-Selections-and-Masking { background-image: url("../art/Header-Selections-and-Masking-dark-idle-2x.png"); background-size: 182px 19px; }
+.h-Header-Your-Own-Actions { width: 182px; height: 19px; background-image: url("../art/Header-Your-Own-Actions-light-idle-2x.png"); background-size: 182px 19px; }
+body.theme-dark .h-Header-Your-Own-Actions { background-image: url("../art/Header-Your-Own-Actions-dark-idle-2x.png"); background-size: 182px 19px; }
+.h-Header-Face-Makeup-and-Hair { width: 182px; height: 19px; background-image: url("../art/Header-Face-Makeup-and-Hair-light-idle-2x.png"); background-size: 182px 19px; }
+body.theme-dark .h-Header-Face-Makeup-and-Hair { background-image: url("../art/Header-Face-Makeup-and-Hair-dark-idle-2x.png"); background-size: 182px 19px; }
+.h-Header-Texture-and-Grain { width: 182px; height: 19px; background-image: url("../art/Header-Texture-and-Grain-light-idle-2x.png"); background-size: 182px 19px; }
+body.theme-dark .h-Header-Texture-and-Grain { background-image: url("../art/Header-Texture-and-Grain-dark-idle-2x.png"); background-size: 182px 19px; }
+.tab[data-tab="skin"] { width: 99px; height: 24px; background-image: url("../art/Tab-Skin-Work-inactive-light-2x.png"); background-size: 99px 24px; }
+.tab[data-tab="skin"]:hover { background-image: url("../art/Tab-Skin-Work-inactive-hover-light-2x.png"); }
+.tab[data-tab="skin"].active { background-image: url("../art/Tab-Skin-Work-active-light-2x.png"); }
+.tab[data-tab="skin"].active:hover { background-image: url("../art/Tab-Skin-Work-active-light-2x.png"); }
+body.theme-dark .tab[data-tab="skin"] { width: 99px; height: 24px; background-image: url("../art/Tab-Skin-Work-inactive-dark-2x.png"); background-size: 99px 24px; }
+body.theme-dark .tab[data-tab="skin"]:hover { background-image: url("../art/Tab-Skin-Work-inactive-hover-dark-2x.png"); }
+body.theme-dark .tab[data-tab="skin"].active { background-image: url("../art/Tab-Skin-Work-active-dark-2x.png"); }
+body.theme-dark .tab[data-tab="skin"].active:hover { background-image: url("../art/Tab-Skin-Work-active-dark-2x.png"); }
+.tab[data-tab="face"] { width: 99px; height: 24px; background-image: url("../art/Tab-Face-Hair-inactive-light-2x.png"); background-size: 99px 24px; }
+.tab[data-tab="face"]:hover { background-image: url("../art/Tab-Face-Hair-inactive-hover-light-2x.png"); }
+.tab[data-tab="face"].active { background-image: url("../art/Tab-Face-Hair-active-light-2x.png"); }
+.tab[data-tab="face"].active:hover { background-image: url("../art/Tab-Face-Hair-active-light-2x.png"); }
+body.theme-dark .tab[data-tab="face"] { width: 99px; height: 24px; background-image: url("../art/Tab-Face-Hair-inactive-dark-2x.png"); background-size: 99px 24px; }
+body.theme-dark .tab[data-tab="face"]:hover { background-image: url("../art/Tab-Face-Hair-inactive-hover-dark-2x.png"); }
+body.theme-dark .tab[data-tab="face"].active { background-image: url("../art/Tab-Face-Hair-active-dark-2x.png"); }
+body.theme-dark .tab[data-tab="face"].active:hover { background-image: url("../art/Tab-Face-Hair-active-dark-2x.png"); }
+.va-opt[data-va="1"] { width: 26px; height: 26px; background-image: url("../art/Radio-Aid-1-unselected-light-idle-2x.png"); background-size: 26px 26px; }
+.va-opt[data-va="1"]:hover { background-image: url("../art/Radio-Aid-1-unselected-light-hover-2x.png"); }
+.va-opt[data-va="1"].selected { background-image: url("../art/Radio-Aid-1-selected-light-idle-2x.png"); }
+.va-opt[data-va="1"].selected:hover { background-image: url("../art/Radio-Aid-1-selected-light-hover-2x.png"); }
+body.theme-dark .va-opt[data-va="1"] { width: 26px; height: 26px; background-image: url("../art/Radio-Aid-1-unselected-dark-idle-2x.png"); background-size: 26px 26px; }
+body.theme-dark .va-opt[data-va="1"]:hover { background-image: url("../art/Radio-Aid-1-unselected-dark-hover-2x.png"); }
+body.theme-dark .va-opt[data-va="1"].selected { background-image: url("../art/Radio-Aid-1-selected-dark-idle-2x.png"); }
+body.theme-dark .va-opt[data-va="1"].selected:hover { background-image: url("../art/Radio-Aid-1-selected-dark-hover-2x.png"); }
+.va-opt[data-va="2"] { width: 26px; height: 26px; background-image: url("../art/Radio-Aid-2-unselected-light-idle-2x.png"); background-size: 26px 26px; }
+.va-opt[data-va="2"]:hover { background-image: url("../art/Radio-Aid-2-unselected-light-hover-2x.png"); }
+.va-opt[data-va="2"].selected { background-image: url("../art/Radio-Aid-2-selected-light-idle-2x.png"); }
+.va-opt[data-va="2"].selected:hover { background-image: url("../art/Radio-Aid-2-selected-light-hover-2x.png"); }
+body.theme-dark .va-opt[data-va="2"] { width: 26px; height: 26px; background-image: url("../art/Radio-Aid-2-unselected-dark-idle-2x.png"); background-size: 26px 26px; }
+body.theme-dark .va-opt[data-va="2"]:hover { background-image: url("../art/Radio-Aid-2-unselected-dark-hover-2x.png"); }
+body.theme-dark .va-opt[data-va="2"].selected { background-image: url("../art/Radio-Aid-2-selected-dark-idle-2x.png"); }
+body.theme-dark .va-opt[data-va="2"].selected:hover { background-image: url("../art/Radio-Aid-2-selected-dark-hover-2x.png"); }
+.va-opt[data-va="c"] { width: 26px; height: 26px; background-image: url("../art/Radio-Aid-Color-unselected-light-idle-2x.png"); background-size: 26px 26px; }
+.va-opt[data-va="c"]:hover { background-image: url("../art/Radio-Aid-Color-unselected-light-hover-2x.png"); }
+.va-opt[data-va="c"].selected { background-image: url("../art/Radio-Aid-Color-selected-light-idle-2x.png"); }
+.va-opt[data-va="c"].selected:hover { background-image: url("../art/Radio-Aid-Color-selected-light-hover-2x.png"); }
+body.theme-dark .va-opt[data-va="c"] { width: 26px; height: 26px; background-image: url("../art/Radio-Aid-Color-unselected-dark-idle-2x.png"); background-size: 26px 26px; }
+body.theme-dark .va-opt[data-va="c"]:hover { background-image: url("../art/Radio-Aid-Color-unselected-dark-hover-2x.png"); }
+body.theme-dark .va-opt[data-va="c"].selected { background-image: url("../art/Radio-Aid-Color-selected-dark-idle-2x.png"); }
+body.theme-dark .va-opt[data-va="c"].selected:hover { background-image: url("../art/Radio-Aid-Color-selected-dark-hover-2x.png"); }
+.va-opt[data-va="s"] { width: 26px; height: 26px; background-image: url("../art/Radio-Aid-Solar-unselected-light-idle-2x.png"); background-size: 26px 26px; }
+.va-opt[data-va="s"]:hover { background-image: url("../art/Radio-Aid-Solar-unselected-light-hover-2x.png"); }
+.va-opt[data-va="s"].selected { background-image: url("../art/Radio-Aid-Solar-selected-light-idle-2x.png"); }
+.va-opt[data-va="s"].selected:hover { background-image: url("../art/Radio-Aid-Solar-selected-light-hover-2x.png"); }
+body.theme-dark .va-opt[data-va="s"] { width: 26px; height: 26px; background-image: url("../art/Radio-Aid-Solar-unselected-dark-idle-2x.png"); background-size: 26px 26px; }
+body.theme-dark .va-opt[data-va="s"]:hover { background-image: url("../art/Radio-Aid-Solar-unselected-dark-hover-2x.png"); }
+body.theme-dark .va-opt[data-va="s"].selected { background-image: url("../art/Radio-Aid-Solar-selected-dark-idle-2x.png"); }
+body.theme-dark .va-opt[data-va="s"].selected:hover { background-image: url("../art/Radio-Aid-Solar-selected-dark-hover-2x.png"); }
+.bezel { position: absolute; left: 0; top: 0; width: 182px; height: 51px; background-image: url("../art/Status-Bezel-light-idle-2x.png"); background-size: 182px 51px; pointer-events: none; }
+body.theme-dark .bezel { background-image: url("../art/Status-Bezel-dark-idle-2x.png"); }
+
+/* Film Grain (2026-09-23). Icon button, 26 x 26, in the SKIN WORK row next to Texture. Art built
+   from the existing tile set: projector glyph in the label colour, fill/border/hover from Skin-Add-Texture. */
+.a-Skin-Film-Grain { width: 26px; height: 26px; background-image: url("../art/Skin-Film-Grain-light-idle-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-Skin-Film-Grain { background-image: url("../art/Skin-Film-Grain-dark-idle-2x.png"); background-size: 26px 26px; }
+.a-Skin-Film-Grain:hover { background-image: url("../art/Skin-Film-Grain-light-hover-2x.png"); background-size: 26px 26px; }
+body.theme-dark .a-Skin-Film-Grain:hover { background-image: url("../art/Skin-Film-Grain-dark-hover-2x.png"); background-size: 26px 26px; }
+
+/* Skin Work & FS rows and the New Skin card (JKM, 2026-10-08). Labels cut from the button art. */
+.a-Skin-FS-Blur { width: 52px; height: 26px; background-image: url("../art/Skin-FS-Blur-light-idle-2x.png"); background-size: 52px 26px; }
+body.theme-dark .a-Skin-FS-Blur { background-image: url("../art/Skin-FS-Blur-dark-idle-2x.png"); background-size: 52px 26px; }
+.a-Skin-FS-Blur:hover { background-image: url("../art/Skin-FS-Blur-light-hover-2x.png"); background-size: 52px 26px; }
+body.theme-dark .a-Skin-FS-Blur:hover { background-image: url("../art/Skin-FS-Blur-dark-hover-2x.png"); background-size: 52px 26px; }
+.a-Skin-Adjust-Here { width: 89px; height: 26px; background-image: url("../art/Skin-Adjust-Here-light-idle-2x.png"); background-size: 89px 26px; }
+body.theme-dark .a-Skin-Adjust-Here { background-image: url("../art/Skin-Adjust-Here-dark-idle-2x.png"); background-size: 89px 26px; }
+.a-Skin-Adjust-Here:hover { background-image: url("../art/Skin-Adjust-Here-light-hover-2x.png"); background-size: 89px 26px; }
+body.theme-dark .a-Skin-Adjust-Here:hover { background-image: url("../art/Skin-Adjust-Here-dark-hover-2x.png"); background-size: 89px 26px; }
+.a-NS-Reset { width: 42px; height: 26px; background-image: url("../art/NS-Reset-light-idle-2x.png"); background-size: 42px 26px; }
+body.theme-dark .a-NS-Reset { background-image: url("../art/NS-Reset-dark-idle-2x.png"); background-size: 42px 26px; }
+.a-NS-Reset:hover { background-image: url("../art/NS-Reset-light-hover-2x.png"); background-size: 42px 26px; }
+body.theme-dark .a-NS-Reset:hover { background-image: url("../art/NS-Reset-dark-hover-2x.png"); background-size: 42px 26px; }
+.a-Skin-Adjust-Here.open, .a-Skin-Adjust-Here.open:hover { background-image: url("../art/Skin-Adjust-Here-open-light-hover-2x.png"); background-size: 89px 26px; }
+body.theme-dark .a-Skin-Adjust-Here.open, body.theme-dark .a-Skin-Adjust-Here.open:hover { background-image: url("../art/Skin-Adjust-Here-open-dark-hover-2x.png"); background-size: 89px 26px; }
+.lab-Smoother-Tones { width: 71px; height: 12px; background-image: url("../art/NSL-Smoother-Tones-light-2x.png"); background-size: 71px 12px; background-repeat: no-repeat; }
+body.theme-dark .lab-Smoother-Tones { background-image: url("../art/NSL-Smoother-Tones-dark-2x.png"); background-size: 71px 12px; }
+.lab-Blotch-Size { width: 56px; height: 12px; background-image: url("../art/NSL-Blotch-Size-light-2x.png"); background-size: 56px 12px; background-repeat: no-repeat; }
+body.theme-dark .lab-Blotch-Size { background-image: url("../art/NSL-Blotch-Size-dark-2x.png"); background-size: 56px 12px; }
+.lab-Original-Texture { width: 81px; height: 12px; background-image: url("../art/NSL-Original-Texture-light-2x.png"); background-size: 81px 12px; background-repeat: no-repeat; }
+body.theme-dark .lab-Original-Texture { background-image: url("../art/NSL-Original-Texture-dark-2x.png"); background-size: 81px 12px; }
+.lab-New-Skin-Texture { width: 81px; height: 12px; background-image: url("../art/NSL-New-Skin-Texture-light-2x.png"); background-size: 81px 12px; background-repeat: no-repeat; }
+body.theme-dark .lab-New-Skin-Texture { background-image: url("../art/NSL-New-Skin-Texture-dark-2x.png"); background-size: 81px 12px; }
+.lab-Texture-Size { width: 61px; height: 12px; background-image: url("../art/NSL-Texture-Size-light-2x.png"); background-size: 61px 12px; background-repeat: no-repeat; }
+body.theme-dark .lab-Texture-Size { background-image: url("../art/NSL-Texture-Size-dark-2x.png"); background-size: 61px 12px; }
+.lab-Blemish-Cleanup { width: 76px; height: 12px; background-image: url("../art/NSL-Blemish-Cleanup-light-2x.png"); background-size: 76px 12px; background-repeat: no-repeat; }
+body.theme-dark .lab-Blemish-Cleanup { background-image: url("../art/NSL-Blemish-Cleanup-dark-2x.png"); background-size: 76px 12px; }
+.lab-Protect-Shadows-Highlights { width: 146px; height: 12px; background-image: url("../art/NSL-Protect-Shadows-Highlights-light-2x.png"); background-size: 146px 12px; background-repeat: no-repeat; }
+body.theme-dark .lab-Protect-Shadows-Highlights { background-image: url("../art/NSL-Protect-Shadows-Highlights-dark-2x.png"); background-size: 146px 12px; }
+.lab-Protect-Strong-Marks { width: 101px; height: 12px; background-image: url("../art/NSL-Protect-Strong-Marks-light-2x.png"); background-size: 101px 12px; background-repeat: no-repeat; }
+body.theme-dark .lab-Protect-Strong-Marks { background-image: url("../art/NSL-Protect-Strong-Marks-dark-2x.png"); background-size: 101px 12px; }
+.nsd-box { width: 10px; height: 10px; background-image: url("../art/NS-Check-off-light-2x.png"); background-size: 10px 10px; background-repeat: no-repeat; }
+.nsd-tog.on .nsd-box { background-image: url("../art/NS-Check-on-light-2x.png"); background-size: 10px 10px; }
+body.theme-dark .nsd-box { background-image: url("../art/NS-Check-off-dark-2x.png"); background-size: 10px 10px; }
+body.theme-dark .nsd-tog.on .nsd-box { background-image: url("../art/NS-Check-on-dark-2x.png"); background-size: 10px 10px; }
+/* Screen button glyphs, VT323 in the button type (JKM, 2026-10-09) */
+#lcdBtn .bg-A { background-image: url("../art/Btn-Glyph-A-light-2x.png"); }
+#lcdBtn .bg-B { background-image: url("../art/Btn-Glyph-B-light-2x.png"); }
+#lcdBtn .bg-C { background-image: url("../art/Btn-Glyph-C-light-2x.png"); }
+#lcdBtn .bg-D { background-image: url("../art/Btn-Glyph-D-light-2x.png"); }
+#lcdBtn .bg-E { background-image: url("../art/Btn-Glyph-E-light-2x.png"); }
+#lcdBtn .bg-F { background-image: url("../art/Btn-Glyph-F-light-2x.png"); }
+#lcdBtn .bg-G { background-image: url("../art/Btn-Glyph-G-light-2x.png"); }
+#lcdBtn .bg-H { background-image: url("../art/Btn-Glyph-H-light-2x.png"); }
+#lcdBtn .bg-I { background-image: url("../art/Btn-Glyph-I-light-2x.png"); }
+#lcdBtn .bg-J { background-image: url("../art/Btn-Glyph-J-light-2x.png"); }
+#lcdBtn .bg-K { background-image: url("../art/Btn-Glyph-K-light-2x.png"); }
+#lcdBtn .bg-L { background-image: url("../art/Btn-Glyph-L-light-2x.png"); }
+#lcdBtn .bg-M { background-image: url("../art/Btn-Glyph-M-light-2x.png"); }
+#lcdBtn .bg-N { background-image: url("../art/Btn-Glyph-N-light-2x.png"); }
+#lcdBtn .bg-O { background-image: url("../art/Btn-Glyph-O-light-2x.png"); }
+#lcdBtn .bg-P { background-image: url("../art/Btn-Glyph-P-light-2x.png"); }
+#lcdBtn .bg-Q { background-image: url("../art/Btn-Glyph-Q-light-2x.png"); }
+#lcdBtn .bg-R { background-image: url("../art/Btn-Glyph-R-light-2x.png"); }
+#lcdBtn .bg-S { background-image: url("../art/Btn-Glyph-S-light-2x.png"); }
+#lcdBtn .bg-T { background-image: url("../art/Btn-Glyph-T-light-2x.png"); }
+#lcdBtn .bg-U { background-image: url("../art/Btn-Glyph-U-light-2x.png"); }
+#lcdBtn .bg-V { background-image: url("../art/Btn-Glyph-V-light-2x.png"); }
+#lcdBtn .bg-W { background-image: url("../art/Btn-Glyph-W-light-2x.png"); }
+#lcdBtn .bg-X { background-image: url("../art/Btn-Glyph-X-light-2x.png"); }
+#lcdBtn .bg-Y { background-image: url("../art/Btn-Glyph-Y-light-2x.png"); }
+#lcdBtn .bg-Z { background-image: url("../art/Btn-Glyph-Z-light-2x.png"); }
+#lcdBtn .bg-0 { background-image: url("../art/Btn-Glyph-0-light-2x.png"); }
+#lcdBtn .bg-1 { background-image: url("../art/Btn-Glyph-1-light-2x.png"); }
+#lcdBtn .bg-2 { background-image: url("../art/Btn-Glyph-2-light-2x.png"); }
+#lcdBtn .bg-3 { background-image: url("../art/Btn-Glyph-3-light-2x.png"); }
+#lcdBtn .bg-4 { background-image: url("../art/Btn-Glyph-4-light-2x.png"); }
+#lcdBtn .bg-5 { background-image: url("../art/Btn-Glyph-5-light-2x.png"); }
+#lcdBtn .bg-6 { background-image: url("../art/Btn-Glyph-6-light-2x.png"); }
+#lcdBtn .bg-7 { background-image: url("../art/Btn-Glyph-7-light-2x.png"); }
+#lcdBtn .bg-8 { background-image: url("../art/Btn-Glyph-8-light-2x.png"); }
+#lcdBtn .bg-9 { background-image: url("../art/Btn-Glyph-9-light-2x.png"); }
+#lcdBtn .bg-amp { background-image: url("../art/Btn-Glyph-amp-light-2x.png"); }
+#lcdBtn .bg-dash { background-image: url("../art/Btn-Glyph-dash-light-2x.png"); }
+#lcdBtn .bg-dot { background-image: url("../art/Btn-Glyph-dot-light-2x.png"); }
+#lcdBtn .bg-excl { background-image: url("../art/Btn-Glyph-excl-light-2x.png"); }
+#lcdBtn .bg-qmark { background-image: url("../art/Btn-Glyph-qmark-light-2x.png"); }
+#lcdBtn .bg-apos { background-image: url("../art/Btn-Glyph-apos-light-2x.png"); }
+#lcdBtn .bg-colon { background-image: url("../art/Btn-Glyph-colon-light-2x.png"); }
+#lcdBtn .bg-slash { background-image: url("../art/Btn-Glyph-slash-light-2x.png"); }
+#lcdBtn .bg-plus { background-image: url("../art/Btn-Glyph-plus-light-2x.png"); }
+#lcdBtn .bg-pct { background-image: url("../art/Btn-Glyph-pct-light-2x.png"); }
+#lcdBtn .bg-comma { background-image: url("../art/Btn-Glyph-comma-light-2x.png"); }
+#lcdBtn .bg-lpar { background-image: url("../art/Btn-Glyph-lpar-light-2x.png"); }
+#lcdBtn .bg-rpar { background-image: url("../art/Btn-Glyph-rpar-light-2x.png"); }
+body.theme-dark #lcdBtn .bg-A { background-image: url("../art/Btn-Glyph-A-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-B { background-image: url("../art/Btn-Glyph-B-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-C { background-image: url("../art/Btn-Glyph-C-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-D { background-image: url("../art/Btn-Glyph-D-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-E { background-image: url("../art/Btn-Glyph-E-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-F { background-image: url("../art/Btn-Glyph-F-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-G { background-image: url("../art/Btn-Glyph-G-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-H { background-image: url("../art/Btn-Glyph-H-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-I { background-image: url("../art/Btn-Glyph-I-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-J { background-image: url("../art/Btn-Glyph-J-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-K { background-image: url("../art/Btn-Glyph-K-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-L { background-image: url("../art/Btn-Glyph-L-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-M { background-image: url("../art/Btn-Glyph-M-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-N { background-image: url("../art/Btn-Glyph-N-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-O { background-image: url("../art/Btn-Glyph-O-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-P { background-image: url("../art/Btn-Glyph-P-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-Q { background-image: url("../art/Btn-Glyph-Q-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-R { background-image: url("../art/Btn-Glyph-R-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-S { background-image: url("../art/Btn-Glyph-S-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-T { background-image: url("../art/Btn-Glyph-T-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-U { background-image: url("../art/Btn-Glyph-U-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-V { background-image: url("../art/Btn-Glyph-V-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-W { background-image: url("../art/Btn-Glyph-W-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-X { background-image: url("../art/Btn-Glyph-X-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-Y { background-image: url("../art/Btn-Glyph-Y-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-Z { background-image: url("../art/Btn-Glyph-Z-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-0 { background-image: url("../art/Btn-Glyph-0-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-1 { background-image: url("../art/Btn-Glyph-1-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-2 { background-image: url("../art/Btn-Glyph-2-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-3 { background-image: url("../art/Btn-Glyph-3-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-4 { background-image: url("../art/Btn-Glyph-4-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-5 { background-image: url("../art/Btn-Glyph-5-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-6 { background-image: url("../art/Btn-Glyph-6-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-7 { background-image: url("../art/Btn-Glyph-7-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-8 { background-image: url("../art/Btn-Glyph-8-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-9 { background-image: url("../art/Btn-Glyph-9-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-amp { background-image: url("../art/Btn-Glyph-amp-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-dash { background-image: url("../art/Btn-Glyph-dash-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-dot { background-image: url("../art/Btn-Glyph-dot-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-excl { background-image: url("../art/Btn-Glyph-excl-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-qmark { background-image: url("../art/Btn-Glyph-qmark-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-apos { background-image: url("../art/Btn-Glyph-apos-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-colon { background-image: url("../art/Btn-Glyph-colon-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-slash { background-image: url("../art/Btn-Glyph-slash-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-plus { background-image: url("../art/Btn-Glyph-plus-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-pct { background-image: url("../art/Btn-Glyph-pct-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-comma { background-image: url("../art/Btn-Glyph-comma-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-lpar { background-image: url("../art/Btn-Glyph-lpar-dark-2x.png"); }
+body.theme-dark #lcdBtn .bg-rpar { background-image: url("../art/Btn-Glyph-rpar-dark-2x.png"); }

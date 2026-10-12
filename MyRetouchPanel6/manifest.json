@@ -1,0 +1,111 @@
+{
+  "manifestVersion": 5,
+  "id": "com.kimi.myretouchpanel6",
+  "name": "My Retouch Panel 6",
+  "version": "1.0.0",
+  "main": "index.html",
+  "host": {
+    "app": "PS",
+    "minVersion": "26.0.0"
+  },
+  "entrypoints": [
+    {
+      "type": "panel",
+      "id": "myretouchpanel6.panel",
+      "label": {
+        "default": "My Retouch Panel 6"
+      },
+      "minimumSize": {
+        "width": 220,
+        "height": 740
+      },
+      "maximumSize": {
+        "width": 220,
+        "height": 740
+      },
+      "preferredDockedSize": {
+        "width": 220,
+        "height": 740
+      },
+      "preferredFloatingSize": {
+        "width": 220,
+        "height": 740
+      },
+      "icons": [
+        {
+          "width": 23,
+          "height": 938,
+          "path": "icon.png",
+          "scale": [
+            1,
+            2
+          ],
+          "theme": [
+            "darkest",
+            "dark",
+            "medium"
+          ]
+        },
+        {
+          "width": 23,
+          "height": 938,
+          "path": "icon.png",
+          "scale": [
+            1,
+            2
+          ],
+          "theme": [
+            "lightest",
+            "light"
+          ]
+        }
+      ]
+    }
+  ],
+  "icons": [
+    {
+      "width": 23,
+      "height": 938,
+      "path": "icon.png",
+      "scale": [
+        1,
+        2
+      ],
+      "theme": [
+        "dark",
+        "darkest"
+      ],
+      "species": [
+        "generic"
+      ]
+    },
+    {
+      "width": 23,
+      "height": 938,
+      "path": "icon.png",
+      "scale": [
+        1,
+        2
+      ],
+      "theme": [
+        "lightest",
+        "light"
+      ],
+      "species": [
+        "generic"
+      ]
+    }
+  ],
+  "requiredPermissions": {
+    "launchProcess": {
+      "schemes": [
+        "https"
+      ],
+      "extensions": [
+        ".psd"
+      ]
+    },
+    "localFileSystem": "request",
+    "clipboard": "readAndWrite"
+  }
+}

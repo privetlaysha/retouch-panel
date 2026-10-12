@@ -1,0 +1,31 @@
+/* Local Montserrat - no CDN. Drop the .woff2 files into ../fonts/ (see fonts/README.txt).
+   Until then the panel falls back to the system sans stack declared in styles.css. */
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/Montserrat-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/Montserrat-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'VT323';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/VT323-Regular.ttf");
+}
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/PressStart2P-Regular.woff2") format("woff2");
+}

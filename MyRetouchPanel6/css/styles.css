@@ -1,0 +1,170 @@
+﻿/* Beauty Retouch 6.0 - structure. All control visuals are art (css/art.css).
+   Fixed 220 x 740 (locked in manifest.json): 9 top / 19 sides / 6 bottom padding,
+   182 content column. The height budget is exact, so any pixel added must be taken
+   from another element. */
+* { margin: 0; padding: 0; box-sizing: border-box; appearance: none; -webkit-appearance: none; }
+html, body { height: 100%; scrollbar-width: none; }
+::-webkit-scrollbar { width: 0; height: 0; }
+body { width: 220px; overflow: hidden; font-family: "Adobe Clean", "Helvetica Neue", Arial, sans-serif; }
+/* Stuck cursor (JKM, 2026-10-05): a body cursor keeps a panel cursor (text, resize) from staying
+   on screen after the mouse leaves the panel. Buttons keep their own cursor (art.css). */
+body { cursor: default; }
+#panel { width: 220px; padding: 9px 19px 6px 19px; }
+#lcd1, #lcd2, #lcdBtn, #lcdDismiss { font-family: 'Menlo', 'Consolas', 'Courier New', monospace; }
+
+.logo-block { position: relative; height: 35px; }
+#raLogo { display: block; width: 148px; height: 28px; background-repeat: no-repeat;
+  background-image: url("../img/ra-logo-light-2x.png"); background-size: 148px 28px; }
+body.theme-dark #raLogo { background-image: url("../img/ra-logo-dark-2x.png"); }
+/* top-right icon pair: reset (only while a notification is off, ui.js) + light/dark.
+   18px squares, vertically centred on the logo; the logo's art ends at ~133px, so the pair
+   (144-182) never touches it. Absolute, so the 35px row height is unchanged. */
+.top-btns { position: absolute; top: 5px; right: 0; display: flex; }
+.top-btns .art { margin-left: 3px; }
+#noticeReset { display: none; flex: 0 0 auto; margin-left: 4px; }
+#noticeReset.on { display: block; }
+
+.arow { display: flex; justify-content: space-between; align-items: center; }
+.links-row { height: 26px; margin-bottom: 5px; }
+.tool-row { height: 28px; margin-bottom: 7px; }
+.rule { height: 1px; width: 100%; }
+
+/* tab group: strip 24 + zone 229 = 253. The active tab and the zone read as one card in the
+   Screen's glass color (JKM, 2026-10-01). No borders anywhere on the tabs or the zone: UXP
+   draws even a transparent border as a visible line, so the tabs carry none at all. */
+.tabgroup { height: 253px; }
+.tabstrip { height: 24px; margin: 0 -10px; display: flex; justify-content: space-between; }
+.tab { width: 99px; height: 24px; }
+.tab.active { background-color: var(--zone-tab); }
+.zone { background-color: var(--zone); }
+.zone { box-sizing: border-box; height: 229px; padding: 12px 10px 14px 10px; margin: 0 -10px; }
+.tabpane { display: none; }
+.tabpane.active { display: block; }
+
+/* sections: 4 + header 19 + body + 4 */
+.section { padding: 7px 0; }
+.sbody { padding-top: 5px; }
+.sbody .arow { margin-bottom: 6px; }
+.sbody .arow:last-child { margin-bottom: 0; }
+/* The empty row under New Skin (Skin tab), held for the New Skin controls (JKM, 2026-10-08).
+   26px like the button rows, so the tab keeps its layout. */
+.ns-slot { height: 26px; }
+.hdr { display: block; }
+/* A section title that follows another section inside a tab pane. The first title in a
+   pane gets its air from the zone padding; these two had none. 7px matches .section. */
+.hdr-gap { margin-top: 7px; }
+
+/* footer + screen = 22 + 74 */
+.a-Footer-WWW { margin: 2px auto 0 auto; }   /* sits under the Screen, at the very bottom.
+   2px, not more: the art already carries 8px of transparent padding above its ink. */
+#raScreen { margin-top: 11px; }
+.screen-wrap { position: relative; width: 182px; height: 51px; margin: 0 auto; }
+.lcd-glass { position: absolute; left: 4px; top: 4px; right: 4px; bottom: 4px; }
+/* The glass sits 4px inside the 51px bezel, so it spans y4 to y47. The text block used to
+   stop at y45 and cut the descenders off the second line. It now runs y5 to y46, which is
+   every pixel the glass has, and lcd2 gets a 13px line box instead of 12px.
+   font-size 0 and line-height 0 here, both themes (JKM, 2026-10-09): lcd1 is an inline-block
+   with overflow hidden, so it sits on the text baseline of the line around it, and that line's
+   own height pushed lcd2 down 3 to 5px and cut its second row off. With no height of its own,
+   the line is exactly lcd1's 13px. lcd1 and lcd2 set their own size and line height. */
+.lcd-text { position: absolute; left: 11px; top: 5px; right: 11px; height: 41px; overflow: hidden; font-size: 0; line-height: 0; }
+#lcd1 { white-space: nowrap; overflow: hidden; max-width: 100%; font-size: 11px; font-weight: 700; line-height: 13px; letter-spacing: 0.2px; text-transform: uppercase; display: inline-block; }
+#lcd1.inv { padding: 0 5px; }
+#lcd2 { font-size: 11px; line-height: 13px; margin-top: 2px; white-space: normal; word-wrap: break-word; overflow: hidden; max-height: 26px; }
+.screen-actions { display: flex; margin-top: 5px; height: 18px; width: 182px; margin-left: auto; margin-right: auto; }
+#lcdBtn { flex: 1 1 auto; display: flex; justify-content: center; align-items: center; border: 1px solid; border-radius: 3px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; text-align: center; line-height: 16px; cursor: pointer; }
+/* The label is a row of 5 x 16 glyphs in the button type (ui.js _paintBtnLabel; art rules in art.css),
+   1.5px apart: tracking of 30% of the 5px cell (JKM, 2026-10-09). */
+#lcdBtn .bg { flex: 0 0 auto; width: 5px; height: 16px; margin: 0 0.75px; background-size: 5px 16px; background-repeat: no-repeat; }
+#lcdDismiss { width: 18px; height: 18px; border: 1px solid; border-radius: 3px; font-size: 11px; text-align: center; line-height: 16px; cursor: pointer; display: none; flex: 0 0 auto; margin-right: 4px; }
+#raScreen.has-notice #lcdDismiss { display: block; }
+
+/* light */
+body { --zone: #a9b492; --zone-tab: #b7c39e; background: linear-gradient(180deg, #c7ccb6, #b2b89e); }
+#panel { background-image: repeating-linear-gradient(180deg, rgba(47,49,42,0.045) 0px, rgba(47,49,42,0.045) 1px, transparent 1px, transparent 3px); }
+.rule { background-color: #a5ab93; }
+.lcd-glass { background-color: #a9b492; }
+#lcd1 { color: #2e332a; }
+#lcd1.inv { background-color: #2e332a; color: #a9b492; }
+#lcd2 { color: #59604c; }
+#lcdBtn, #lcdDismiss { border-color: #8b9678; color: #5f6450; background-color: #a9b492; }
+#lcdBtn:hover, #lcdDismiss:hover { background-color: rgba(47,49,42,0.08); }
+
+/* dark: "Amber Phosphor" (JKM, 2026-10-07). Brown-black panel, Brown Pod frames, Jaffa Orange accents and
+   Faded Orange text, from the amber terminal and autumn palette refs. Every dark image (art/*dark*.png,
+   img/ra-logo-dark-gold-2x.png) and every colour below is one gradient map: MODERNIZATION_NOTES section 27. */
+body.theme-dark { --zone: #1a1311; --zone-tab: transparent; background: linear-gradient(180deg, #1d1614, #120e0d); }
+body.theme-dark #panel { background-image: repeating-linear-gradient(180deg, rgba(255,150,80,0.025) 0px, rgba(255,150,80,0.025) 1px, transparent 1px, transparent 3px); }
+body.theme-dark #raLogo { background-image: url("../img/ra-logo-dark-gold-2x.png"); }
+/* Dotted rule as art (JKM, 2026-10-04): UXP does not repeat backgrounds, so a
+   repeating-linear-gradient drew only its first dot in Photoshop. 182 x 1, a dot every 3px. */
+body.theme-dark .rule { background-color: transparent; background-image: url("../art/Rule-Dotted-dark-2x.png"); background-size: 182px 1px; background-repeat: no-repeat; }
+/* raFx.js busy dots: the rule above the Screen hides while they run (a class, so it comes back exactly). */
+.rule.fx-hide, body.theme-dark .rule.fx-hide { background-color: transparent; background-image: none; }
+body.theme-dark .zone { background-image: url("../art/Zone-Card-dark-2x.png"); background-size: 202px 229px; background-repeat: no-repeat; }
+/* Screen (JKM, 2026-10-03): gold outline like the red bezel, glass 4px inside it. The text
+   block's own font-size / line-height stop the inline title from taking a 16px line box, so the
+   title-to-body gap is the 1px margin; 5px above the title, room for two body lines.
+   Height budget: margin 6 + Screen 56 = the light theme's 11 + 51. */
+body.theme-dark #raScreen { margin-top: 6px; }
+body.theme-dark .screen-wrap { height: 56px; }
+body.theme-dark .bezel { height: 56px; background-size: 182px 56px; }
+body.theme-dark .lcd-glass { left: 4px; right: 4px; top: 4px; bottom: 4px; background-color: transparent; background-image: url("../art/Status-Glass-dark-2x.png"); background-size: 174px 48px; background-repeat: no-repeat; }
+body.theme-dark .lcd-text { left: 11px; right: 11px; top: 9px; height: 42px; font-size: 0; line-height: 0; }
+body.theme-dark #lcd2 { margin-top: 1px; }
+body.theme-dark #lcd1 { color: #d6753d; }
+body.theme-dark #lcd1.inv { background-color: #d6753d; color: #23170f; }
+body.theme-dark #lcd2 { color: #b15d38; }
+body.theme-dark #lcdBtn, body.theme-dark #lcdDismiss { border-color: #8c482e; color: #d6753d; background-color: #23170f; }
+body.theme-dark #lcdBtn:hover, body.theme-dark #lcdDismiss:hover { background-color: #311d15; }
+/* tooltips: one #raTip div, placed by ui.js (_tipShow); the look is the Screen's glass */
+/* Tool flyouts (ui.js, JKM 2026-10-04): a triangle in the corner of five tool buttons, and the menu. */
+.has-fly { position: relative; }
+.fly-hit { position: absolute; right: 0; bottom: 0; width: 11px; height: 11px; }
+.fly-tri { position: absolute; left: 3px; top: 3px; width: 5px; height: 5px; background-image: url("../art/Fly-Tri-light-2x.png"); background-size: 5px 5px; background-repeat: no-repeat; }
+body.theme-dark .fly-tri { background-image: url("../art/Fly-Tri-dark-2x.png"); }
+#raFly { display: none; position: absolute; left: 0; top: 0; z-index: 1001; box-sizing: border-box; padding: 3px 0 1px 0; border: 1px solid #8b9678; border-radius: 3px; background-color: #a9b492; font-family: 'Menlo', 'Consolas', 'Courier New', monospace; font-size: 10px; }
+#raFly .fly-item { height: 16px; line-height: 16px; margin-bottom: 2px; padding: 0 8px; color: #2e332a; white-space: nowrap; cursor: pointer; }
+#raFly .fly-item:hover { background-color: rgba(47,49,42,0.12); }
+body.theme-dark #raFly { border-color: #8c482e; background-color: #23170f; }
+body.theme-dark #raFly .fly-item { color: #d6753d; }
+body.theme-dark #raFly .fly-item:hover { background-color: #311d15; }
+#raTip { display: none; position: absolute; left: 0; top: 0; z-index: 1000; box-sizing: border-box; padding: 3px 7px 4px 7px; border: 1px solid #8b9678; border-radius: 3px; background-color: #a9b492; color: #2e332a; font-family: 'Menlo', 'Consolas', 'Courier New', monospace; font-size: 10px; line-height: 13px; white-space: normal; pointer-events: none; }
+body.theme-dark #raTip { border-color: #8c482e; background-color: #23170f; color: #d6753d; }
+
+/* ---------- New Skin card (newSkin.js, JKM 2026-10-08) ----------
+   Hangs from the New Skin row (top set by newSkin.js on open) over the panel down to the Screen:
+   y 352 to 623 in the 740 layout. 271px keeps the Amber frame's 4-row dotted band in phase with the
+   tab card above it. The frame is art (UXP draws no inset shadows); labels are art in the button
+   type; the numbers are live Menlo, like the Screen. */
+#nsDrawer { display: none; position: absolute; left: 9px; top: 352px; width: 202px; height: 271px; z-index: 50;
+  box-sizing: border-box; padding: 0 10px 8px 10px; font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  background-color: #a9b492; background-image: url("../art/NS-Card-light-2x.png"); background-size: 202px 271px; background-repeat: no-repeat; }
+#nsDrawer.open { display: block; }
+body.theme-dark #nsDrawer { background-color: #1c1410; background-image: url("../art/NS-Card-dark-2x.png"); background-size: 202px 271px; }
+.nsd-rule, .nsd-hair { height: 1px; background-image: url("../art/Rule-Dotted-light-2x.png"); background-size: 182px 1px; background-repeat: no-repeat; }
+body.theme-dark .nsd-rule, body.theme-dark .nsd-hair { background-image: url("../art/Rule-Dotted-dark-2x.png"); background-size: 182px 1px; }
+.nsd-rule { margin: 2px 0 4px 0; }
+.nsd-hair { margin: 4px 0 5px 0; }
+.nsd-row { margin-bottom: 8px; }
+.nsd-line { display: flex; align-items: center; height: 12px; }
+.nsd-track { position: relative; flex: 1 1 auto; height: 12px; margin: 0 5px; cursor: pointer; }
+.nsd-bar { position: absolute; left: 0; right: 0; top: 5px; height: 2px; border-radius: 1px; background-color: #8b9678; }
+.nsd-fill { position: absolute; left: 0; top: 5px; height: 2px; width: 0; border-radius: 1px; background-color: #2e332a; }
+.nsd-tick { position: absolute; top: 2px; width: 1px; height: 8px; background-color: #59604c; }
+.nsd-knob { position: absolute; top: 1px; left: 0; width: 10px; height: 10px; margin-left: -5px; border-radius: 5px; box-sizing: border-box;
+  border: 1px solid #a9b492; background-color: #2e332a; }
+.nsd-val { width: 22px; text-align: right; font-size: 10px; line-height: 12px; color: #2e332a; }
+body.theme-dark .nsd-bar { background-color: #5b2f21; }
+body.theme-dark .nsd-fill { background-color: #d6753d; }
+body.theme-dark .nsd-tick { background-color: #8c482e; }
+body.theme-dark .nsd-knob { border-color: #1c1410; background-color: #d6753d; }
+body.theme-dark .nsd-val { color: #d6753d; }
+.nsd-tr { display: flex; justify-content: space-between; align-items: center; height: 26px; }
+.nsd-tog { display: flex; align-items: center; height: 14px; cursor: pointer; }
+.nsd-tog .nsd-box { margin-right: 6px; }
+
+/* Sage frame (JKM, 2026-10-08, option A): a dark outer line and a sage line inside it around the tab
+   card, with side borders on the active tab only (its art). The lines are art; ui.js sets .zone-face. */
+.zone { background-image: url("../art/Zone-Card-light-skin-2x.png"); background-size: 202px 229px; background-repeat: no-repeat; }
+.zone.zone-face { background-image: url("../art/Zone-Card-light-face-2x.png"); background-size: 202px 229px; }

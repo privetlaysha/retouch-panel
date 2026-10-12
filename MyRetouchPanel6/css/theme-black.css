@@ -1,0 +1,176 @@
+/* Black Magnet theme - GENERATED from the BR_v5_Black vs BR_v5_Basic skin diff
+   (do not hand-edit; regenerate on any skin change). Activates when <body> has
+   class "theme-black". Colors/background scoped here; icon art is swapped by
+   themeToggle.js (img/ -> img/black/); hover sizes below match the Black skin,
+   which shows hover icons at 1x (no hover zoom). */
+
+/* toggle button (top-right) */
+#uiToggle {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+    background-color: #1e1d22;   /* dark swatch = tap for Black Magnet */
+    border: 1px solid #413f4b;
+    cursor: default;
+    z-index: 50;
+}
+body.theme-black #uiToggle {
+    background-color: #42605f;   /* teal swatch = tap for Basic */
+    border: 1px solid #88a7a6;
+}
+
+body.theme-black .primary-btn {
+    background-color: #1e1d22;
+    border: 1px solid #1e1d22;
+}
+
+body.theme-black .primary-btn:hover {
+    background-color: #1e1d22;
+    border: 1px solid #413f4b;
+}
+
+body.theme-black .secondary-btn {
+    background-color: #1e1d22;
+    border: 1px solid #413f4b;
+    color: #4f4f4f;
+}
+
+body.theme-black .secondary-btn:hover {
+    background-color: #413f4b;
+}
+
+body.theme-black h1.title {
+    color: #4fa0ae;
+    text-shadow: 1px 1px 1px #89b0a7;
+}
+
+body.theme-black a.link {
+    color: #c2765f !important;
+}
+
+body.theme-black .figure img.Sirv.image-hover {
+    left: 0;
+}
+
+body.theme-black img[src="img/black/hover/AI Button.png"] {
+    width: 17px;
+    height: 17px;
+}
+
+body.theme-black img[src="img/black/hover/Brush Tool.png"] {
+    width: 17px;
+    height: 17px;
+}
+
+body.theme-black img[src="img/black/hover/Spot Brush Tool.png"] {
+    width: 16px;
+    height: 16px;
+}
+
+body.theme-black img[src="img/black/hover/Remove tool.png"] {
+    width: 17px;
+    height: 17px;
+}
+
+body.theme-black img[src="img/black/hover/Stamp Tool.png"] {
+    width: 17px;
+    height: 17px;
+}
+
+body.theme-black img[src="img/black/hover/Crop Tool.png"] {
+    width: 17px;
+    height: 17px;
+}
+
+body.theme-black img[src="img/black/hover/Lasso Tool.png"] {
+    width: 20px;
+    height: 18px;
+}
+
+body.theme-black img[src="img/black/hover/Object Selection.png"] {
+    width: 16px;
+    height: 17px;
+}
+
+body.theme-black img[src="img/black/hover/Selection Brush Tool.png"] {
+    width: 17px;
+    height: 18px;
+}
+
+body.theme-black img[src="img/black/hover/Select Subject feature.png"] {
+    width: 18px;
+    height: 16px;
+}
+
+body.theme-black img[src="img/black/hover/Rectangle Marquee Tool.png"] {
+    width: 17px;
+    height: 14px;
+}
+
+body.theme-black img[src="img/black/hover/Pen Tool.png"] {
+    width: 17px;
+    height: 17px;
+}
+
+body.theme-black img[src="img/black/hover/Levels.png"] {
+    width: 20px;
+    height: 18px;
+}
+
+body.theme-black img[src="img/black/hover/Curves.png"] {
+    width: 20px;
+    height: 18px;
+}
+
+body.theme-black img[src="img/black/hover/Hue_Saturation.png"] {
+    width: 20px;
+    height: 18px;
+}
+
+body.theme-black img[src="img/black/hover/Selective Color.png"] {
+    width: 20px;
+    height: 18px;
+}
+
+body.theme-black img[src="img/black/hover/Color Balance.png"] {
+    width: 23px;
+    height: 16px;
+}
+
+body.theme-black img[src="img/black/hover/Liquify smart.png"] {
+    width: 20px;
+    height: 18px;
+}
+
+body.theme-black img[src="img/black/hover/Sharpen.png"] {
+    width: 16px;
+    height: 18px;
+}
+
+body.theme-black img[src="img/black/hover/add-new-layer.png"] {
+    width: 20px;
+    height: 18px;
+}
+
+body.theme-black img[src="img/black/hover/STAMP LAYERS.png"] {
+    width: 20px;
+    height: 18px;
+}
+
+body.theme-black img[src="img/black/hover/120% size.png"] {
+    width: 20px;
+    height: 18px;
+}
+
+body.theme-black img[src="img/black/hover/SAVE WEB Button.png"] {
+    width: 20px;
+    height: 18px;
+}
+
+body.theme-black img[src="img/black/hover/SAVE AS Button.png"] {
+    width: 20px;
+    height: 18px;
+}

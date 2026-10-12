@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/art.css">
+<script src="panel.js"></script>
+<script src="ui.js"></script>
+</head>
+<body>
+<div id="panel">
+
+<div class="logo-block">
+  <div id="raLogo" data-tip="Retouching Academy"></div>
+  <div class="top-btns">
+    <div class="art theme-toggle" onclick="toggleUI()" data-tip="Light / Dark"><div class="tt-knob"></div></div>
+  </div>
+</div>
+
+    <div class="arow links-row"><div class="art a-Link-Tutorials" onclick="openUrl('https://retouchingacademylab.com/resources/')" data-tip="Video Tutorials"></div><div class="art a-Link-Instagram" onclick="openUrl('https://www.instagram.com/retouchingpanels/')" data-tip="RA Panels on Instagram"></div><div class="art a-Link-Support" onclick="openUrl('https://retouchingacademylab.com/submit-ticket/')" data-tip="Contact Support"></div><div class="art a-Link-Your-Account" onclick="openUrl('https://retouchingacademylab.com/my-account-woo/downloads/')" data-tip="Your downloads and license reset"></div></div>
+    <div class="arow tool-row"><div class="art a-Tool-AI-Select" onclick="runScript('AITool')" data-tip="RA AI Tool"></div><div class="art a-Tool-Brush" data-fly="brush" data-tip="Brush Tool"></div><div class="art a-Tool-Spot-Heal" data-fly="heal" data-tip="Spot Healing Brush Tool"></div><div class="art a-Tool-Remove" onclick="runScript('RemoveTool')" data-tip="Remove Tool"></div><div class="art a-Tool-Clone-Stamp" onclick="runScript('CloneStampTool')" data-tip="Clone Stamp Tool"></div><div class="art a-Tool-Crop" onclick="runScript('CropTool')" data-tip="Crop Tool"></div></div>
+
+<div class="tabgroup">
+  <div class="tabstrip">
+    <div class="art tab" data-tab="skin" onclick="selectTab('skin')" data-tip="Skin Work tab"></div>
+    <div class="art tab" data-tab="face" onclick="selectTab('face')" data-tip="Face &amp; Hair tab"></div>
+  </div>
+  <div class="zone">
+    <div class="tabpane" data-pane="skin">
+    <div class="art hdr h-Header-Dodge-and-Burn"></div>
+    <div class="sbody">
+    <div class="arow"><div class="art a-DB-Curves-Set" onclick="runScript('Dodge_Burn_localnewcopy')" data-tip="Dodge &amp; Burn Curves Set"></div><div class="art a-DB-Dodge" onclick="runScript('dodge')" data-tip="Dodge Curve, masked"></div><div class="art a-DB-Burn" onclick="runScript('burn')" data-tip="Burn Curve, masked"></div></div>
+    <div class="arow"><div class="art a-DB-Gray-Set" onclick="runScript('GlobalD_B_MidGrayLayer')" data-tip="D&amp;B 50% Gray Layer Set"></div><div class="art a-DB-Gray-Layer" onclick="runScript('GreyLayer')" data-tip="D&amp;B 50% Gray Layer"></div><div class="art a-DB-Brush-S" onclick="runScript('brush1_local')" data-tip="D&amp;B Brush, small"></div><div class="art a-DB-Brush-L" onclick="runScript('brush2_midgray')" data-tip="D&amp;B Brush, large"></div></div>
+    <div class="arow"><div class="art va-opt" data-va="1" onclick="vaSelect('1')" data-tip="Visual Aid 1"></div><div class="art va-opt" data-va="2" onclick="vaSelect('2')" data-tip="Visual Aid 2, more contrast"></div><div class="art va-opt" data-va="c" onclick="vaSelect('c')" data-tip="Color Check"></div><div class="art va-opt" data-va="s" onclick="vaSelect('s')" data-tip="Solar Curve: background check"></div><div class="art a-DB-Visual-Aid" onclick="vaRun()" data-tip="Run the selected Visual Aid"></div></div>
+    </div>
+    <div class="art hdr hdr-gap h-Header-Skin-Work-and-FS"></div>
+    <div class="sbody">
+    <div class="arow"><div class="art a-Skin-FS-Blur" onclick="runScript('FS_Gausian')" data-tip="Frequency Separation via Gaussian Blur"></div><div class="art a-Skin-Median" onclick="runScript('FS_Median')" data-tip="Frequency Separation via Median"></div><div class="art a-Skin-Custom" onclick="runScript('FSClassicCustomized')" data-tip="Custom Frequency Separation: set the High Pass"></div></div>
+    <div class="arow ns-slot" id="newSkinSlot"><div class="art a-Skin-New-Skin" onclick="runScript('FS_New_Skin')" data-tip="New Skin: Tone and Texture Rebuild"></div><div class="art a-Skin-Adjust-Here" id="nsAdjust" onclick="nsToggle()" data-tip="New Skin sliders"></div></div>
+    </div>
+    </div>
+    <div class="tabpane" data-pane="face">
+    <div class="art hdr h-Header-Face-Makeup-and-Hair"></div>
+    <div class="sbody">
+    <div class="arow"><div class="art a-Sel-Auto-Skin-Mask" onclick="autoSkinMask()" data-tip="Auto Skin Mask: isolates facial skin"></div><div class="art a-Sel-People-Eyes" onclick="runScript('selEyes')" data-tip="Select Eyes"></div><div class="art a-Sel-People-Lips" onclick="runScript('selLips')" data-tip="Select Lips"></div><div class="art a-Sel-People-Teeth" onclick="runScript('selTeeth')" data-tip="Select Teeth"></div><div class="art a-Sel-People-Body" onclick="runScript('selBody')" data-tip="Select Face &amp; Upper Body"></div><div class="art a-Sel-People-Hair" onclick="runScript('selHair')" data-tip="Select Hair"></div></div>
+    <div class="arow"><div class="art a-Face-Skin-Tone" onclick="runScript('SkinColor')" data-tip="Skin Tone Correction"></div><div class="art a-Face-Glow" onclick="runScript('JK_GlowingSkin')" data-tip="Glow: adjust to your image"></div><div class="art a-Face-Anti-Pink" onclick="runScript('JK_Anti_Pink')" data-tip="Reduce pink in skin"></div></div>
+    <div class="arow"><div class="art a-Face-Eyes" onclick="runScript('JK_MagicEyes')" data-tip="Brighten eyes and add vitality"></div><div class="art a-Face-Teeth" onclick="runScript('RA_MagicSmile')" data-tip="Brighten and whiten teeth"></div><div class="art a-Face-Anti-Redness" onclick="runScript('Anti_Redness')" data-tip="Reduce Redness: gently paint over inflamed spots"></div></div>
+    <div class="arow"><div class="art a-Face-Hair-Brush-1" onclick="runScript('Hairbrush1')" data-tip="Hair Brush 1"></div><div class="art a-Face-Hair-Brush-2" onclick="runScript('Hairbrush2')" data-tip="Hair Brush 2"></div><div class="art a-Face-Hair-Highlights" onclick="runScript('HairHighlight')" data-tip="Hair Highlights: paint in with the Hair brushes"></div></div>
+    </div>
+    <div class="art hdr hdr-gap h-Header-Texture-and-Grain"></div>
+    <div class="sbody">
+    <div class="arow"><div class="art a-Skin-Add-Texture" onclick="runScript('RA_DigitalSkinTexture')" data-tip="Digital Skin Texture: paint in where needed"></div><div class="art a-Skin-Film-Grain" onclick="runScript('RA_FilmGrain')" data-tip="Film Grain: apply to entire frame"></div><div class="art a-Skin-Remove-Hairs" onclick="runScript('RemoveBodyandFaceHair')" data-tip="Remove small hairs and other particles"></div></div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+    <div class="art hdr h-Header-Selections-and-Masking"></div>
+    <div class="sbody">
+    <div class="arow"><div class="art a-Sel-Lasso" data-fly="lasso" data-tip="Lasso Tool"></div><div class="art a-Sel-Object-Selection" data-fly="objsel" data-tip="Object Selection Tool"></div><div class="art a-Sel-Selection-Brush" onclick="runScript('SelectionBrushTool')" data-tip="Selection Brush Tool"></div><div class="art a-Sel-Select-Subject" onclick="runScript('SelectSubject')" data-tip="Select Subject"></div><div class="art a-Sel-Marquee" data-fly="marquee" data-tip="Rectangular Marquee Tool"></div><div class="art a-Sel-Pen" onclick="runScript('PenTool')" data-tip="Pen Tool"></div></div>
+    <div class="arow"><div class="art a-Sel-Luminosity" onclick="runScript('basic')" data-tip="Set base luminosity selection"></div><div class="art a-Sel-Add" onclick="runScript('plus')" data-tip="Expand Selection"></div><div class="art a-Sel-Subtract" onclick="runScript('minus')" data-tip="Reduce Selection"></div><div class="art a-Sel-Invert" onclick="runScript('invert')" data-tip="Invert Selection"></div></div>
+    </div>
+</div>
+<div class="rule"></div>
+
+<div class="section">
+    <div class="art hdr h-Header-Your-Own-Actions"></div>
+    <div class="sbody">
+    <div class="arow"><div class="art a-Slot-A" onclick="runScript('scriptA')" data-tip="Runs your Action A"></div><div class="art a-Slot-B" onclick="runScript('scriptB')" data-tip="Runs your Action B"></div><div class="art a-Slot-C" onclick="runScript('scriptC')" data-tip="Runs your Action C"></div><div class="art a-Slot-D" onclick="runScript('scriptD')" data-tip="Runs your Action D"></div><div class="art a-Slot-E" onclick="runScript('scriptE')" data-tip="Runs your Action E"></div><div class="art a-Slot-F" onclick="runScript('scriptF')" data-tip="Runs your Action F"></div></div>
+    <div class="arow"><div class="art a-My-Levels" onclick="runScript('Levels')" data-tip="Levels Adjustment Layer. Opt-click (Alt-click) to apply to the active layer or mask."></div><div class="art a-My-Curves" onclick="runScript('Curves')" data-tip="Curves Adjustment Layer. Opt-click (Alt-click) to apply to the active layer or mask."></div><div class="art a-My-Hue-Sat" onclick="runScript('Hue')" data-tip="Hue/Saturation Layer"></div><div class="art a-My-Selective-Color" onclick="runScript('Selectivecolor')" data-tip="Selective Color Layer"></div><div class="art a-My-Color-Balance" onclick="runScript('ColorBalance')" data-tip="Color Balance Layer"></div><div class="art a-My-Smart-Liquify" onclick="runScript('Liquify_smart')" data-tip="Smart Liquify: adjustable Liquify layer"></div></div>
+    <div class="arow"><div class="art a-My-Sharpen" onclick="runScript('RA_SharpenDetails')" data-tip="Sharpen entire image or isolated parts"></div><div class="art a-My-New-Layer" onclick="runScript('NewLayer')" data-tip="New blank layer"></div><div class="art a-My-Stamp-Layers" onclick="runScript('Layer')" data-tip="Stamp visible layers"></div><div class="art a-My-120-Size" onclick="runScript('_120')" data-tip="Upsize 120%"></div><div class="art a-My-Save-Web" onclick="runScript('webSize')" data-tip="Save for Web"></div><div class="art a-My-Save-As" onclick="runScript('SAVEAS')" data-tip="Save a Copy"></div></div>
+    <div class="arow"><div class="art a-Fin-Image-Size" onclick="runScript('imageSize')" data-tip="Image Size, Preserve Details 2.0"></div><div class="art a-Fin-Flatten-Image" onclick="runScript('flatImage')" data-tip="Flatten Image"></div><div class="art a-Fin-Over-Saturation" onclick="runScript('Over_SaturatedAreas')" data-tip="Over-Saturation check"></div></div>
+    </div>
+</div>
+<div class="rule" id="screenRule"></div>
+
+<div id="raScreen">
+  <div class="screen-wrap">
+    <div class="lcd-glass"></div>
+    <div class="lcd-text">
+      <div id="lcd1" class="lcd-line">BEAUTY RETOUCH 6.0</div>
+      <div id="lcd2">Ready. Happy Retouching!</div>
+    </div>
+    <div class="art bezel"></div>
+  </div>
+  <div class="screen-actions">
+    <div id="lcdDismiss" onclick="dismissNotice()" data-tip="Dismiss">&#10005;</div>
+    <div id="lcdBtn" onclick="screenBtnGo()">HELP CENTER</div>
+    <div id="noticeReset" class="art a-Icon-Reset" onclick="resetNotices()" data-tip="Show hidden pop-ups again"></div>
+  </div>
+</div>
+
+<div class="art a-Footer-WWW" onclick="openUrl('https://retouchingacademylab.com/')" data-tip="Open retouchingacademylab.com"></div>
+
+<!-- New Skin card (newSkin.js fills it; JKM 2026-10-08): hangs from the New Skin row, over the panel down to the Screen. -->
+<div id="nsDrawer"></div>
+
+</div>
+</body>
+</html>
