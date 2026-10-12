@@ -338,7 +338,13 @@ async function frequencySeparation(radius, useMedian) {
       dRenameLayer(LOW),
       dDuplicateLayer(),
       dRenameLayer(HIGH),
-      dSelectBackLayer(),
+      // выбираем low по имени (ordinal "back" ненадёжен — падает с "Select not available")
+      {
+        _obj: "select",
+        _target: [{ _ref: "layer", _name: LOW }],
+        makeVisible: false,
+        ...dontDisplay,
+      },
       useMedian ? dMedian(radius) : dGaussianBlur(radius),
       // вернуться на high-слой
       {
