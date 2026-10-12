@@ -13,7 +13,6 @@ const { entrypoints } = require("uxp");
 async function bp(descriptors, options = {}) {
   return await action.batchPlay(descriptors, {
     synchronousExecution: true,
-    modalBehavior: "execute",
     ...options,
   });
 }
@@ -99,11 +98,10 @@ const dFillGray50 = () => ({
   ...dontDisplay,
 });
 
-// Выбор инструмента по его ID
+// Выбор инструмента по его ID (правильный способ — _obj:"select")
 const dSelectTool = (toolId) => ({
-  _obj: "set",
-  _target: [{ _ref: "tool", _enum: "ordinal", _value: "targetEnum" }],
-  to: { _obj: "tool", _value: toolId },
+  _obj: "select",
+  _target: { _ref: toolId },
   ...dontDisplay,
 });
 
@@ -121,11 +119,16 @@ const dMakeAdj = (type) => ({
 // Задать кривую текущему adj. слою (points: [[x,y],...], x/y 0..255)
 const dSetCurve = (points) => ({
   _obj: "set",
-  _target: [{ _ref: "adjustmentLayer", _enum: "ordinal", _value: "targetEnum" }],
+  _target: { _ref: "adjustmentLayer", _enum: "ordinal", _value: "targetEnum" },
   to: {
-    _obj: "adjustmentLayer",
+    _obj: "curves",
+    presetKind: { _enum: "presetKindType", _value: "presetKindCustom" },
     adjustment: [
-      { _obj: "curves", curve: points.map(([h, v]) => ({ _obj: "curvePoint", horizontal: h, vertical: v })) },
+      {
+        _obj: "curvesAdjustment",
+        channel: { _ref: "channel", _enum: "channel", _value: "composite" },
+        curve: points.map(([h, v]) => ({ _obj: "curvePoint", horizontal: h, vertical: v })),
+      },
     ],
   },
   ...dontDisplay,
@@ -134,9 +137,10 @@ const dSetCurve = (points) => ({
 // Hue/Sat: сдвиги по мастер-каналу
 const dSetHueSat = (hue, saturation, lightness) => ({
   _obj: "set",
-  _target: [{ _ref: "adjustmentLayer", _enum: "ordinal", _value: "targetEnum" }],
+  _target: { _ref: "adjustmentLayer", _enum: "ordinal", _value: "targetEnum" },
   to: {
-    _obj: "adjustmentLayer",
+    _obj: "hueSaturation",
+    presetKind: { _enum: "presetKindType", _value: "presetKindCustom" },
     adjustment: [{ _obj: "hueSatAdjustmentV2", hue, saturation, lightness }],
   },
   ...dontDisplay,
@@ -231,11 +235,41 @@ async function makeCurvesAdj(name, points, hideAll) {
 }
 
 async function makeHueSatAdj(name, h, s, l, hideAll) {
-  await bp([dMakeAdj("hueSaturation"), dSetHueSat(h, s, l), dRenameLayer(name), ...(hideAll ? [dMaskHideAll()] : [])]);
+  await bp([
+    {
+      _obj: "make",
+      _target: { _ref: "adjustmentLayer" },
+      using: {
+        _obj: "adjustmentLayer",
+        type: {
+          _obj: "hueSaturation",
+          presetKind: { _enum: "presetKindType", _value: "presetKindDefault" },
+          colorize: false,
+        },
+      },
+      ...dontDisplay,
+    },
+    dSetHueSat(h, s, l),
+    dRenameLayer(name),
+    ...(hideAll ? [dMaskHideAll()] : []),
+  ]);
 }
 
 async function makeGrayLayer(name, blendMode) {
-  await bp([dMakeLayer(), dRenameLayer(name), dSelectAll(), dFillGray50(), dDeselect(), dSetBlendMode(blendMode)]);
+  // fillNeutral: заливка нейтральным для режима (50% gray для softLight/overlay)
+  await bp([
+    {
+      _obj: "make",
+      _target: { _ref: "layer" },
+      using: {
+        _obj: "layer",
+        name,
+        mode: { _enum: "blendMode", _value: blendMode },
+        fillNeutral: true,
+      },
+      ...dontDisplay,
+    },
+  ]);
 }
 
 async function selectToolAndFG(toolId, r, g, b) {
@@ -576,31 +610,35 @@ const Scripts = {
       },
     ]),
 
-  // Select People (PS 25.9+): глаза/губы/зубы/волосы/тело.
-  // Дескриптор экспериментальный: если Adobe сменит форму — пишем в консоль и делаем Select Subject.
+  // Select People (PS 27.9+): настоящий дескриптор selectPeopleV2.
+  // parts: hair=1, eyebrows=2, eyes=3, iris=4, nose=6, mouth=7, teeth=8,
+  //        facialSkin=10, upperBodySkin=13, hands=15, accessories=22
   SelectPeoplePart: (part) =>
     modal("Select People: " + part, async () => {
-      const forms = [
-        { _obj: "selectPeople", features: [{ _enum: "peopleFeature", _value: part }] },
-        { _obj: "selectPeopleParts", parts: [part] },
-        { _obj: "selectPeople", peoplePart: { _enum: "peoplePart", _value: part } },
-      ];
-      let ok = false;
-      for (const d of forms) {
-        try {
-          await bp([{ ...d, ...dontDisplay }]);
-          ok = true;
-          break;
-        } catch (e) {
-          console.warn("selectPeople form failed:", JSON.stringify(d), e.message || e);
-        }
-      }
-      if (!ok) {
-        await bp([{ _obj: "autoCutout", sampleAllLayers: false, ...dontDisplay }]);
-        uiStatus("Select People недоступен — выделен Subject");
-      } else {
-        uiStatus("Select People: " + part);
-      }
+      const PARTS = {
+        hair: ["Hair", 1], eyebrows: ["Eyebrows", 2], eyes: ["Eyes", 3],
+        iris: ["Iris", 4], nose: ["Nose", 6], mouth: ["Mouth", 7],
+        teeth: ["Teeth", 8], facialSkin: ["Facial Skin", 10],
+        upperBodySkin: ["Upper Body Skin", 13], hands: ["Hands", 15],
+        skin: ["Facial Skin", 10], body: ["Upper Body Skin", 13],
+        lips: ["Mouth", 7],
+      };
+      const p = PARTS[part];
+      if (!p) return;
+      try {
+        await bp([dDeselect()]);
+      } catch (e) {}
+      const res = await bp([
+        {
+          _obj: "selectPeopleV2",
+          selectAllPeople: true,
+          tagsV2: [p[0]],
+          tagsIndices: [p[1]],
+          ...dontDisplay,
+        },
+      ]);
+      if (res && res[0] && res[0]._obj === "error") throw new Error(res[0].message || "selectPeopleV2 error");
+      uiStatus("Select People: " + p[0]);
     }),
 
   // Auto Skin Mask: Select People (кожа) → чёрная маска на кривой

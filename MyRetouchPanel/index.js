@@ -13,7 +13,6 @@ const { entrypoints } = require("uxp");
 async function bp(descriptors, options = {}) {
   return await action.batchPlay(descriptors, {
     synchronousExecution: true,
-    modalBehavior: "execute",
     ...options,
   });
 }
@@ -99,11 +98,10 @@ const dFillGray50 = () => ({
   ...dontDisplay,
 });
 
-// Выбор инструмента по его ID
+// Выбор инструмента по его ID (правильный способ — _obj:"select")
 const dSelectTool = (toolId) => ({
-  _obj: "set",
-  _target: [{ _ref: "tool", _enum: "ordinal", _value: "targetEnum" }],
-  to: { _obj: "tool", _value: toolId },
+  _obj: "select",
+  _target: { _ref: toolId },
   ...dontDisplay,
 });
 
@@ -121,11 +119,16 @@ const dMakeAdj = (type) => ({
 // Задать кривую текущему adj. слою (points: [[x,y],...], x/y 0..255)
 const dSetCurve = (points) => ({
   _obj: "set",
-  _target: [{ _ref: "adjustmentLayer", _enum: "ordinal", _value: "targetEnum" }],
+  _target: { _ref: "adjustmentLayer", _enum: "ordinal", _value: "targetEnum" },
   to: {
-    _obj: "adjustmentLayer",
+    _obj: "curves",
+    presetKind: { _enum: "presetKindType", _value: "presetKindCustom" },
     adjustment: [
-      { _obj: "curves", curve: points.map(([h, v]) => ({ _obj: "curvePoint", horizontal: h, vertical: v })) },
+      {
+        _obj: "curvesAdjustment",
+        channel: { _ref: "channel", _enum: "channel", _value: "composite" },
+        curve: points.map(([h, v]) => ({ _obj: "curvePoint", horizontal: h, vertical: v })),
+      },
     ],
   },
   ...dontDisplay,
@@ -134,9 +137,10 @@ const dSetCurve = (points) => ({
 // Hue/Sat: сдвиги по мастер-каналу
 const dSetHueSat = (hue, saturation, lightness) => ({
   _obj: "set",
-  _target: [{ _ref: "adjustmentLayer", _enum: "ordinal", _value: "targetEnum" }],
+  _target: { _ref: "adjustmentLayer", _enum: "ordinal", _value: "targetEnum" },
   to: {
-    _obj: "adjustmentLayer",
+    _obj: "hueSaturation",
+    presetKind: { _enum: "presetKindType", _value: "presetKindCustom" },
     adjustment: [{ _obj: "hueSatAdjustmentV2", hue, saturation, lightness }],
   },
   ...dontDisplay,
@@ -231,11 +235,41 @@ async function makeCurvesAdj(name, points, hideAll) {
 }
 
 async function makeHueSatAdj(name, h, s, l, hideAll) {
-  await bp([dMakeAdj("hueSaturation"), dSetHueSat(h, s, l), dRenameLayer(name), ...(hideAll ? [dMaskHideAll()] : [])]);
+  await bp([
+    {
+      _obj: "make",
+      _target: { _ref: "adjustmentLayer" },
+      using: {
+        _obj: "adjustmentLayer",
+        type: {
+          _obj: "hueSaturation",
+          presetKind: { _enum: "presetKindType", _value: "presetKindDefault" },
+          colorize: false,
+        },
+      },
+      ...dontDisplay,
+    },
+    dSetHueSat(h, s, l),
+    dRenameLayer(name),
+    ...(hideAll ? [dMaskHideAll()] : []),
+  ]);
 }
 
 async function makeGrayLayer(name, blendMode) {
-  await bp([dMakeLayer(), dRenameLayer(name), dSelectAll(), dFillGray50(), dDeselect(), dSetBlendMode(blendMode)]);
+  // fillNeutral: заливка нейтральным для режима (50% gray для softLight/overlay)
+  await bp([
+    {
+      _obj: "make",
+      _target: { _ref: "layer" },
+      using: {
+        _obj: "layer",
+        name,
+        mode: { _enum: "blendMode", _value: blendMode },
+        fillNeutral: true,
+      },
+      ...dontDisplay,
+    },
+  ]);
 }
 
 async function selectToolAndFG(toolId, r, g, b) {
@@ -512,11 +546,149 @@ const Scripts = {
     }),
 
   SaveAs: () => bp([{ _obj: "save", _options: { dialogOptions: "display" } }]),
+
+  /* ---------- Новое в 6.0 ---------- */
+
+  // Частотка через Gaussian Blur (алиас 6.0)
+  FSGaussian: () => frequencySeparation(8, false),
+
+  // Custom FS через High Pass (6.0: "set the High Pass")
+  FSHighPass: () =>
+    modal("Custom FS", async () => {
+      const R = (globalThis.NS && globalThis.NS.radius) || 8;
+      const LOW = "FS Low Frequency";
+      const HIGH = "FS High Frequency";
+      await bp([
+        dDuplicateLayer(),
+        dRenameLayer(LOW),
+        dDuplicateLayer(),
+        dRenameLayer(HIGH),
+        dHighPass(R),
+        dSetBlendMode("linearLight"),
+      ]);
+      await bp([
+        {
+          _obj: "select",
+          _target: [{ _ref: "layer", _name: LOW }],
+          selectionModifier: { _enum: "selectionModifierType", _value: "addToSelectionContinuous" },
+          makeVisible: false,
+          ...dontDisplay,
+        },
+        dGroup(),
+        dRenameLayer("Frequency Separation"),
+      ]);
+    }),
+
+  // Плёночное зерно: штамп + шум + чуть blur, Soft Light
+  FilmGrain: () =>
+    modal("Film Grain", async () => {
+      await bp([
+        { _obj: "mergeVisible", duplicate: true, ...dontDisplay },
+        dRenameLayer("Film Grain"),
+        dAddNoise(4),
+        dGaussianBlur(0.5),
+        dSetBlendMode("softLight"),
+        dSetOpacity(45),
+      ]);
+    }),
+
+  // Smart Liquify: конвертация в смарт-объект + диалог Liquify (редактируемо потом)
+  LiquifySmart: () =>
+    modal("Smart Liquify", async () => {
+      await bp([{ _obj: "newPlacedLayer", ...dontDisplay }]); // convert to Smart Object
+      await bp([{ _obj: "liquify", _options: { dialogOptions: "display" } }]);
+    }),
+
+  // Image Size с Preserve Details 2.0
+  ImageSizePreserveDetails: () =>
+    bp([
+      {
+        _obj: "imageSize",
+        constrainProportions: true,
+        interfaceIconFrameDimmed: { _enum: "interpolationType", _value: "preserveDetailsUpscale" },
+        _options: { dialogOptions: "display" },
+      },
+    ]),
+
+  // Select People (PS 27.9+): настоящий дескриптор selectPeopleV2.
+  // parts: hair=1, eyebrows=2, eyes=3, iris=4, nose=6, mouth=7, teeth=8,
+  //        facialSkin=10, upperBodySkin=13, hands=15, accessories=22
+  SelectPeoplePart: (part) =>
+    modal("Select People: " + part, async () => {
+      const PARTS = {
+        hair: ["Hair", 1], eyebrows: ["Eyebrows", 2], eyes: ["Eyes", 3],
+        iris: ["Iris", 4], nose: ["Nose", 6], mouth: ["Mouth", 7],
+        teeth: ["Teeth", 8], facialSkin: ["Facial Skin", 10],
+        upperBodySkin: ["Upper Body Skin", 13], hands: ["Hands", 15],
+        skin: ["Facial Skin", 10], body: ["Upper Body Skin", 13],
+        lips: ["Mouth", 7],
+      };
+      const p = PARTS[part];
+      if (!p) return;
+      try {
+        await bp([dDeselect()]);
+      } catch (e) {}
+      const res = await bp([
+        {
+          _obj: "selectPeopleV2",
+          selectAllPeople: true,
+          tagsV2: [p[0]],
+          tagsIndices: [p[1]],
+          ...dontDisplay,
+        },
+      ]);
+      if (res && res[0] && res[0]._obj === "error") throw new Error(res[0].message || "selectPeopleV2 error");
+      uiStatus("Select People: " + p[0]);
+    }),
+
+  // Auto Skin Mask: Select People (кожа) → чёрная маска на кривой
+  AutoSkinMask: () =>
+    modal("Auto Skin Mask", async () => {
+      await Scripts.SelectPeoplePart("skin");
+      await makeCurvesAdj("Auto Skin Mask", [[0, 0], [128, 128], [255, 255]], false);
+      await bp([
+        {
+          _obj: "make",
+          new: { _class: "channel" },
+          at: { _ref: "channel", _enum: "channel", _value: "mask" },
+          using: { _enum: "userMaskEnabled", _value: "revealSelection" },
+          ...dontDisplay,
+        },
+        dDeselect(),
+      ]);
+    }),
 };
+
+// Статус в LCD-экран панели (если есть)
+function uiStatus(text) {
+  try {
+    if (typeof globalThis.screenSay === "function") globalThis.screenSay(text);
+    else console.log("[status]", text);
+  } catch (e) {}
+}
+
+// Select People обёртки
+Scripts.SelEyes = () => Scripts.SelectPeoplePart("eyes");
+Scripts.SelLips = () => Scripts.SelectPeoplePart("lips");
+Scripts.SelTeeth = () => Scripts.SelectPeoplePart("teeth");
+Scripts.SelHair = () => Scripts.SelectPeoplePart("hair");
+Scripts.SelBody = () => Scripts.SelectPeoplePart("body");
 
 /* ---------- Псевдонимы имён кнопок оригинальной раскладки ---------- */
 
 const Aliases = {
+  // 6.0
+  FS_Gausian: "FSGaussian",
+  FSClassicCustomized: "FSHighPass",
+  RA_FilmGrain: "FilmGrain",
+  Liquify_smart: "LiquifySmart",
+  imageSize: "ImageSizePreserveDetails",
+  selEyes: "SelEyes",
+  selLips: "SelLips",
+  selTeeth: "SelTeeth",
+  selHair: "SelHair",
+  selBody: "SelBody",
+  autoSkinMask: "AutoSkinMask",
   // верхний ряд инструментов
   AITool: "RemoveTool",
   BrushTool: "BrushTool",
@@ -601,6 +773,10 @@ globalThis.openUrl = openUrl;
 /* ---------- Точка входа ---------- */
 
 function runScript(name) {
+  if (name.startsWith("__tool:")) {
+    bp([dSelectTool(name.slice(7))]).catch((e) => console.error("[tool]", e));
+    return;
+  }
   const target = Aliases[name] || name;
   const fn = Scripts[target];
   if (!fn) {
