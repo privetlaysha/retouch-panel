@@ -51,29 +51,71 @@ you can read, tweak and extend.
 
 ## Installation
 
-1. Copy the `MyRetouchPanel` folder to:
-   - **macOS:** `~/Library/Application Support/Adobe/UXP/Plugins/External/`
-   - **Windows:** `%APPDATA%\Adobe\UXP\Plugins\External\`
-2. Register it in `PluginsInfo/v1/PS.json` (same `Adobe/UXP` folder) by adding:
+No installer needed — UXP panels are plain folders. Two panels are included; install either or both:
+**MyRetouchPanel** (dark, v5 layout) and **MyRetouchPanel6** (v6 layout with tabs and themes).
+
+### Step 1 — Download
+
+On this GitHub page click **Code → Download ZIP**, then unzip it. (Or `git clone` if you use git.)
+
+### Step 2 — Copy the panel folder(s)
+
+Copy `MyRetouchPanel` and/or `MyRetouchPanel6` into Photoshop's UXP plugins folder:
+
+- **macOS:** `~/Library/Application Support/Adobe/UXP/Plugins/External/`
+  (in Finder press `⌘⇧G` and paste the path; create the folders if they don't exist)
+- **Windows:** `%APPDATA%\Adobe\UXP\Plugins\External\`
+  (paste into Explorer's address bar)
+
+### Step 3 — Register the panel(s)
+
+In the same `Adobe/UXP` folder open `PluginsInfo/v1/PS.json`
+(create the folders and the file if missing). Add one entry per panel inside `"plugins": [ … ]`:
 
 ```json
 {
-  "hostMinVersion": "23.3.0",
-  "name": "My Retouch Panel",
-  "path": "$localPlugins/External/MyRetouchPanel",
-  "pluginId": "com.kimi.myretouchpanel",
-  "status": "enabled",
-  "type": "uxp",
-  "versionString": "1.0.0"
+  "plugins": [
+    {
+      "hostMinVersion": "23.3.0",
+      "name": "My Retouch Panel",
+      "path": "$localPlugins/External/MyRetouchPanel",
+      "pluginId": "com.kimi.myretouchpanel",
+      "status": "enabled",
+      "type": "uxp",
+      "versionString": "1.0.0"
+    },
+    {
+      "hostMinVersion": "26.0.0",
+      "name": "My Retouch Panel 6",
+      "path": "$localPlugins/External/MyRetouchPanel6",
+      "pluginId": "com.kimi.myretouchpanel6",
+      "status": "enabled",
+      "type": "uxp",
+      "versionString": "1.0.0"
+    }
+  ]
 }
 ```
 
-3. Restart Photoshop → `Plugins → My Retouch Panel`.
+If the file already has other plugins, keep them — just add these entries.
+
+### Step 4 — Restart Photoshop
+
+`Plugins` menu → **My Retouch Panel** / **My Retouch Panel 6**. Done.
 
 **Alternative (developer route):** open [UXP Developer Tool](https://developer.adobe.com/photoshop/uxp/2022/guides/devtool/installation/),
-`Add Plugin…` → select `MyRetouchPanel/manifest.json` → `Load`.
+`Add Plugin…` → select `MyRetouchPanel/manifest.json` → `Load`. No PS.json editing needed.
 
 Requires Photoshop **23.3 or newer** (UXP panels).
+
+### Коротко по-русски
+
+1. **Code → Download ZIP** на этой странице, распаковать.
+2. Папку `MyRetouchPanel6` (или `MyRetouchPanel`) скопировать в
+   `~/Library/Application Support/Adobe/UXP/Plugins/External/` (в Finder: `⌘⇧G`, вставить путь).
+3. В файле `Adobe/UXP/PluginsInfo/v1/PS.json` добавить запись панели (пример выше —
+   если файла нет, создать его целиком по образцу).
+4. Перезапустить Photoshop → меню **Plugins → My Retouch Panel 6**.
 
 ## Project structure
 
