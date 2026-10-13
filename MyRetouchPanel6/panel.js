@@ -514,8 +514,9 @@ const Scripts = {
       // отдаёт "parameters not currently valid" и роняет UXP-процесс.
       await bp([dChannelToSelection()]);
     }),
-  SelPlus: () => bp([dAddChannel()]),
-  SelMinus: () => bp([dSubtractChannel()]),
+  // +/− у Luminosity: расширить/сузить выделение (Select → Modify → Expand/Contract)
+  SelPlus: () => bp([{ _obj: "expand", by: { _unit: "pixelsUnit", _value: 2 }, ...dontDisplay }]),
+  SelMinus: () => bp([{ _obj: "contract", by: { _unit: "pixelsUnit", _value: 2 }, ...dontDisplay }]),
   SelInvert: () => bp([{ _obj: "inverse", ...dontDisplay }]),
 
   /* Face, Makeup & Hair */
