@@ -10,15 +10,15 @@ body { width: 220px; overflow: hidden; font-family: "Adobe Clean", "Helvetica Ne
    on screen after the mouse leaves the panel. Buttons keep their own cursor (art.css). */
 body { cursor: default; }
 #panel { width: 220px; padding: 9px 19px 6px 19px; }
-#lcd1, #lcd2, #lcdBtn, #lcdDismiss { font-family: 'Menlo', 'Consolas', 'Courier New', monospace; }
+#lcd1, #lcd2, #lcdBtn, #lcdDismiss { font-family: "Helvetica Neue", Arial, sans-serif; }
 
-.logo-block { position: relative; height: 35px; }
+.logo-block { position: relative; height: 38px; }
 #layshaLogo { display: inline-block; width: 28px; height: 28px; border-radius: 50%;
   background: url("../img/laysha-logo.png") center/cover no-repeat; vertical-align: middle; cursor: pointer; }
 .brand-link { display: inline-block; vertical-align: middle; margin-left: 7px; margin-top: 7px;
-  font-family: 'Menlo', 'Consolas', monospace; font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  font-family: "Helvetica Neue", Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1px;
   color: #4a5140; cursor: pointer; }
-body.theme-dark .brand-link { color: #e8a25e; }
+body.theme-dark .brand-link { color: #62E6D0; }
 /* top-right icon pair: reset (only while a notification is off, ui.js) + light/dark.
    18px squares, vertically centred on the logo; the logo's art ends at ~133px, so the pair
    (144-182) never touches it. Absolute, so the 35px row height is unchanged. */
@@ -29,7 +29,7 @@ body.theme-dark .brand-link { color: #e8a25e; }
 
 .arow { display: flex; justify-content: space-between; align-items: center; }
 .links-row { height: 26px; margin-bottom: 5px; }
-.tool-row { height: 28px; margin-bottom: 7px; }
+.tool-row { height: 33px; margin-bottom: 7px; }
 .rule { height: 1px; width: 100%; }
 
 /* tab group: strip 24 + zone 229 = 253. The active tab and the zone read as one card in the
@@ -45,7 +45,7 @@ body.theme-dark .brand-link { color: #e8a25e; }
 .tabpane.active { display: block; }
 
 /* sections: 4 + header 19 + body + 4 */
-.section { padding: 7px 0; }
+.section { padding: 10px 0; }
 .sbody { padding-top: 5px; }
 .sbody .arow { margin-bottom: 6px; }
 .sbody .arow:last-child { margin-bottom: 0; }
@@ -58,11 +58,11 @@ body.theme-dark .brand-link { color: #e8a25e; }
 .hdr-gap { margin-top: 7px; }
 
 /* footer: #LAYSHAPHOTO text link under the Screen */
-.footer-www { margin: 2px auto 0 auto; text-align: center; font-family: 'Menlo', 'Consolas', monospace;
+.footer-www { margin: 2px auto 0 auto; text-align: center; font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 10px; letter-spacing: 2px; padding: 5px 0 2px; cursor: pointer; color: #4a5140; opacity: .9; }
 .footer-www:hover { opacity: 1; text-decoration: underline; }
-body.theme-dark .footer-www { color: #e8a25e; }
-#raScreen { margin-top: 11px; }
+body.theme-dark .footer-www { color: #62E6D0; }
+#raScreen { margin-top: 17px; }
 .screen-wrap { position: relative; width: 182px; height: 51px; margin: 0 auto; }
 .lcd-glass { position: absolute; left: 4px; top: 4px; right: 4px; bottom: 4px; }
 /* The glass sits 4px inside the 51px bezel, so it spans y4 to y47. The text block used to
@@ -98,8 +98,8 @@ body { --zone: #a9b492; --zone-tab: #b7c39e; background: linear-gradient(180deg,
 /* dark: "Amber Phosphor" (JKM, 2026-10-07). Brown-black panel, Brown Pod frames, Jaffa Orange accents and
    Faded Orange text, from the amber terminal and autumn palette refs. Every dark image (art/*dark*.png,
    img/ra-logo-dark-gold-2x.png) and every colour below is one gradient map: MODERNIZATION_NOTES section 27. */
-body.theme-dark { --zone: #1a1311; --zone-tab: transparent; background: linear-gradient(180deg, #1d1614, #120e0d); }
-body.theme-dark #panel { background-image: repeating-linear-gradient(180deg, rgba(255,150,80,0.025) 0px, rgba(255,150,80,0.025) 1px, transparent 1px, transparent 3px); }
+body.theme-dark { --zone: #111A19; --zone-tab: transparent; background: linear-gradient(180deg, #131C1B, #0C1211); }
+body.theme-dark #panel { background-image: repeating-linear-gradient(180deg, rgba(80,220,200,0.025) 0px, rgba(80,220,200,0.025) 1px, transparent 1px, transparent 3px); }
 /* Dotted rule as art (JKM, 2026-10-04): UXP does not repeat backgrounds, so a
    repeating-linear-gradient drew only its first dot in Photoshop. 182 x 1, a dot every 3px. */
 body.theme-dark .rule { background-color: transparent; background-image: url("../art/Rule-Dotted-dark-2x.png"); background-size: 182px 1px; background-repeat: no-repeat; }
@@ -110,31 +110,31 @@ body.theme-dark .zone { background-image: url("../art/Zone-Card-dark-2x.png"); b
    block's own font-size / line-height stop the inline title from taking a 16px line box, so the
    title-to-body gap is the 1px margin; 5px above the title, room for two body lines.
    Height budget: margin 6 + Screen 56 = the light theme's 11 + 51. */
-body.theme-dark #raScreen { margin-top: 6px; }
+body.theme-dark #raScreen { margin-top: 12px; }
 body.theme-dark .screen-wrap { height: 56px; }
 body.theme-dark .bezel { height: 56px; background-size: 182px 56px; }
 body.theme-dark .lcd-glass { left: 4px; right: 4px; top: 4px; bottom: 4px; background-color: transparent; background-image: url("../art/Status-Glass-dark-2x.png"); background-size: 174px 48px; background-repeat: no-repeat; }
 body.theme-dark .lcd-text { left: 11px; right: 11px; top: 9px; height: 42px; font-size: 0; line-height: 0; }
 body.theme-dark #lcd2 { margin-top: 1px; }
-body.theme-dark #lcd1 { color: #d6753d; }
-body.theme-dark #lcd1.inv { background-color: #d6753d; color: #23170f; }
-body.theme-dark #lcd2 { color: #b15d38; }
-body.theme-dark #lcdBtn, body.theme-dark #lcdDismiss { border-color: #8c482e; color: #d6753d; background-color: #23170f; }
-body.theme-dark #lcdBtn:hover, body.theme-dark #lcdDismiss:hover { background-color: #311d15; }
+body.theme-dark #lcd1 { color: #43D6BC; }
+body.theme-dark #lcd1.inv { background-color: #43D6BC; color: #0F2320; }
+body.theme-dark #lcd2 { color: #38B19B; }
+body.theme-dark #lcdBtn, body.theme-dark #lcdDismiss { border-color: #2E8C7C; color: #43D6BC; background-color: #0F2320; }
+body.theme-dark #lcdBtn:hover, body.theme-dark #lcdDismiss:hover { background-color: #15312C; }
 /* tooltips: one #raTip div, placed by ui.js (_tipShow); the look is the Screen's glass */
 /* Tool flyouts (ui.js, JKM 2026-10-04): a triangle in the corner of five tool buttons, and the menu. */
 .has-fly { position: relative; }
 .fly-hit { position: absolute; right: 0; bottom: 0; width: 11px; height: 11px; }
 .fly-tri { position: absolute; left: 3px; top: 3px; width: 5px; height: 5px; background-image: url("../art/Fly-Tri-light-2x.png"); background-size: 5px 5px; background-repeat: no-repeat; }
 body.theme-dark .fly-tri { background-image: url("../art/Fly-Tri-dark-2x.png"); }
-#raFly { display: none; position: absolute; left: 0; top: 0; z-index: 1001; box-sizing: border-box; padding: 3px 0 1px 0; border: 1px solid #8b9678; border-radius: 3px; background-color: #a9b492; font-family: 'Menlo', 'Consolas', 'Courier New', monospace; font-size: 10px; }
+#raFly { display: none; position: absolute; left: 0; top: 0; z-index: 1001; box-sizing: border-box; padding: 3px 0 1px 0; border: 1px solid #8b9678; border-radius: 3px; background-color: #a9b492; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 10px; }
 #raFly .fly-item { height: 16px; line-height: 16px; margin-bottom: 2px; padding: 0 8px; color: #2e332a; white-space: nowrap; cursor: pointer; }
 #raFly .fly-item:hover { background-color: rgba(47,49,42,0.12); }
-body.theme-dark #raFly { border-color: #8c482e; background-color: #23170f; }
-body.theme-dark #raFly .fly-item { color: #d6753d; }
-body.theme-dark #raFly .fly-item:hover { background-color: #311d15; }
-#raTip { display: none; position: absolute; left: 0; top: 0; z-index: 1000; box-sizing: border-box; padding: 3px 7px 4px 7px; border: 1px solid #8b9678; border-radius: 3px; background-color: #a9b492; color: #2e332a; font-family: 'Menlo', 'Consolas', 'Courier New', monospace; font-size: 10px; line-height: 13px; white-space: normal; pointer-events: none; }
-body.theme-dark #raTip { border-color: #8c482e; background-color: #23170f; color: #d6753d; }
+body.theme-dark #raFly { border-color: #2E8C7C; background-color: #0F2320; }
+body.theme-dark #raFly .fly-item { color: #43D6BC; }
+body.theme-dark #raFly .fly-item:hover { background-color: #15312C; }
+#raTip { display: none; position: absolute; left: 0; top: 0; z-index: 1000; box-sizing: border-box; padding: 3px 7px 4px 7px; border: 1px solid #8b9678; border-radius: 3px; background-color: #a9b492; color: #2e332a; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 10px; line-height: 13px; white-space: normal; pointer-events: none; }
+body.theme-dark #raTip { border-color: #2E8C7C; background-color: #0F2320; color: #43D6BC; }
 
 /* ---------- New Skin card (newSkin.js, JKM 2026-10-08) ----------
    Hangs from the New Skin row (top set by newSkin.js on open) over the panel down to the Screen:
@@ -142,10 +142,10 @@ body.theme-dark #raTip { border-color: #8c482e; background-color: #23170f; color
    tab card above it. The frame is art (UXP draws no inset shadows); labels are art in the button
    type; the numbers are live Menlo, like the Screen. */
 #nsDrawer { display: none; position: absolute; left: 9px; top: 352px; width: 202px; height: 271px; z-index: 50;
-  box-sizing: border-box; padding: 0 10px 8px 10px; font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+  box-sizing: border-box; padding: 0 10px 8px 10px; font-family: "Helvetica Neue", Arial, sans-serif;
   background-color: #a9b492; background-image: url("../art/NS-Card-light-2x.png"); background-size: 202px 271px; background-repeat: no-repeat; }
 #nsDrawer.open { display: block; }
-body.theme-dark #nsDrawer { background-color: #1c1410; background-image: url("../art/NS-Card-dark-2x.png"); background-size: 202px 271px; }
+body.theme-dark #nsDrawer { background-color: #101C1A; background-image: url("../art/NS-Card-dark-2x.png"); background-size: 202px 271px; }
 .nsd-rule, .nsd-hair { height: 1px; background-image: url("../art/Rule-Dotted-light-2x.png"); background-size: 182px 1px; background-repeat: no-repeat; }
 body.theme-dark .nsd-rule, body.theme-dark .nsd-hair { background-image: url("../art/Rule-Dotted-dark-2x.png"); background-size: 182px 1px; }
 .nsd-rule { margin: 2px 0 4px 0; }
@@ -159,11 +159,11 @@ body.theme-dark .nsd-rule, body.theme-dark .nsd-hair { background-image: url("..
 .nsd-knob { position: absolute; top: 1px; left: 0; width: 10px; height: 10px; margin-left: -5px; border-radius: 5px; box-sizing: border-box;
   border: 1px solid #a9b492; background-color: #2e332a; }
 .nsd-val { width: 22px; text-align: right; font-size: 10px; line-height: 12px; color: #2e332a; }
-body.theme-dark .nsd-bar { background-color: #5b2f21; }
-body.theme-dark .nsd-fill { background-color: #d6753d; }
-body.theme-dark .nsd-tick { background-color: #8c482e; }
-body.theme-dark .nsd-knob { border-color: #1c1410; background-color: #d6753d; }
-body.theme-dark .nsd-val { color: #d6753d; }
+body.theme-dark .nsd-bar { background-color: #215B4F; }
+body.theme-dark .nsd-fill { background-color: #43D6BC; }
+body.theme-dark .nsd-tick { background-color: #2E8C7C; }
+body.theme-dark .nsd-knob { border-color: #101C1A; background-color: #43D6BC; }
+body.theme-dark .nsd-val { color: #43D6BC; }
 .nsd-tr { display: flex; justify-content: space-between; align-items: center; height: 26px; }
 .nsd-tog { display: flex; align-items: center; height: 14px; cursor: pointer; }
 .nsd-tog .nsd-box { margin-right: 6px; }
