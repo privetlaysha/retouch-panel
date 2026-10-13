@@ -57,9 +57,9 @@ body.theme-dark .brand-link { color: #62E6D0; }
    pane gets its air from the zone padding; these two had none. 7px matches .section. */
 .hdr-gap { margin-top: 7px; }
 
-/* footer: #LAYSHAPHOTO text link under the Screen */
-.footer-www { margin: 2px auto 0 auto; text-align: center; font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 10px; letter-spacing: 2px; padding: 5px 0 2px; cursor: pointer; color: #4a5140; opacity: .9; }
+/* footer: @LAYSHAPHOTO text link under the Screen */
+.footer-www { margin: 0 auto; text-align: center; font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 10px; letter-spacing: 2px; padding: 1px 0 10px; cursor: pointer; color: #4a5140; opacity: .9; }
 .footer-www:hover { opacity: 1; text-decoration: underline; }
 body.theme-dark .footer-www { color: #62E6D0; }
 #raScreen { margin-top: 17px; }
