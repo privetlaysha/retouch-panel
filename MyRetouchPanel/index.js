@@ -27,10 +27,13 @@ logLine("=== panel loaded ===");
 
 /* ---------- Базовые помощники ---------- */
 
-// Выполнить пачку дескрипторов, не роняя панель при ошибке
+// Выполнить пачку дескрипторов, не роняя панель при ошибке.
+// synchronousExecution:false — при true Photoshop 27 показывает собственные
+// модальные диалоги об ошибках ("could not complete your request") в обход
+// dialogOptions:dontDisplay; при false ошибки приходят в промис/результаты.
 async function bp(descriptors, options = {}) {
   const res = await action.batchPlay(descriptors, {
-    synchronousExecution: true,
+    synchronousExecution: false,
     ...options,
   });
   // per-descriptor ошибки приходят в результатах — логируем с указанием команды
@@ -44,6 +47,21 @@ async function bp(descriptors, options = {}) {
     });
   } catch (e) {}
   return res;
+}
+
+// Диалоги Photoshop (Liquify, Image Size, Save) нельзя вызывать изнутри
+// executeAsModal — модалка в модалке виснет. Открываем их чуть позже, уже
+// вне модального контекста.
+function showDialogLater(desc, delay = 350) {
+  setTimeout(() => {
+    // liquify и др. "модифицирующие" события разрешены только внутри модального
+    // скоупа — открываем ОТДЕЛЬНЫЙ executeAsModal (не вложенный, а новый)
+    core
+      .executeAsModal(async () => {
+        await action.batchPlay([desc], { synchronousExecution: false });
+      }, { commandName: "My Retouch" })
+      .catch((e) => logLine("dialog err: " + (e && e.message)));
+  }, delay);
 }
 
 // Обёртка: код уже выполняется внутри executeAsModal (runScript оборачивает всё),
@@ -215,12 +233,19 @@ const dAddNoise = (pct) => ({
 });
 
 // Apply Image: вычесть слой lowName (для частотного разложения)
-const dApplyImageSubtract = (lowName) => ({
+// Два нюанса PS27: "to" — ссылка на RGB-КАНАЛ исходного слоя,
+// а режим задаётся ключом "calculation" (НЕ "blending" — он игнорируется).
+const dApplyImageSubtract = (lowLayerRef) => ({
   _obj: "applyImageEvent",
   with: {
     _obj: "calculation",
-    to: { _ref: "layer", _name: lowName },
-    blending: { _enum: "blendMode", _value: "subtract" },
+    to: {
+      _ref: [
+        { _ref: "channel", _enum: "channel", _value: "RGB" },
+        lowLayerRef,
+      ],
+    },
+    calculation: { _enum: "calculation", _value: "subtract" },
     scale: 2,
     offset: 128,
   },
@@ -275,7 +300,8 @@ const dIntersectRGB = () => ({
 /* ---------- Более крупные строительные блоки ---------- */
 
 async function makeCurvesAdj(name, points, hideAll) {
-  await bp([dMakeAdj("curves"), dSetCurve(points), dRenameLayer(name), ...(hideAll ? [dDeleteMask(), dMaskHideAll()] : [])]);
+  const r = await bp([dMakeAdj("curves"), dSetCurve(points), dRenameLayer(name), ...(hideAll ? [dDeleteMask(), dMaskHideAll()] : [])]);
+  return r && r[0] && r[0].layerID;
 }
 
 async function makeHueSatAdj(name, h, s, l, hideAll) {
@@ -329,38 +355,50 @@ async function selectToolAndFG(toolId, r, g, b) {
 }
 
 // Частотное разложение: low (blur|median), high (apply image subtract + linear light)
+// Слои адресуем по ID, а не по имени: при повторном запуске на том же документе
+// имена "FS Low/High Frequency" уже заняты и выбор по имени хватает чужие слои.
 async function frequencySeparation(radius, useMedian) {
   const LOW = "FS Low Frequency";
   const HIGH = "FS High Frequency";
+  const layerRef = (id, name) => ({ _ref: "layer", ...(id ? { _id: id } : { _name: name }) });
   await modal("Frequency Separation", async () => {
+    // База частотки:
+    //  — активный пиксельный слой → обычный дубль (mergeVisible на единственном
+    //    заблокированном Background в PS отвечает "not currently available");
+    //  — активная группа → штамп видимого (дубль группы всё ломает).
+    // Дубль — только с обычного пиксельного слоя (вкл. Background).
+    // Группы, смарт-объекты и корректирующие слои → штамп видимого
+    // (дубль смарт-объекта ломает Apply Image, дубль группы — всю структуру).
+    // Исключение: документ из одного слоя — там mergeVisible недоступен.
+    let useStamp = false;
+    try {
+      const doc = app.activeDocument;
+      const al = (doc.activeLayers || [])[0];
+      const isPixel = !al || al.kind === "pixel";
+      useStamp = !isPixel && doc.layers.length > 1;
+      logLine("FS active=[" + (al && al.name) + "] kind=" + (al && al.kind) + " layers=" + doc.layers.length + " stamp=" + useStamp);
+    } catch (e) {
+      logLine("FS detect err: " + (e && e.message));
+    }
+    const r1 = useStamp
+      ? await bp([{ _obj: "mergeVisible", duplicate: true, ...dontDisplay }, dRenameLayer(LOW)])
+      : await bp([dDuplicateLayer(), dRenameLayer(LOW)]);
+    const lowID = r1 && r1[0] && r1[0].layerID;
+    const r2 = await bp([dDuplicateLayer(), dRenameLayer(HIGH)]);
+    const highID = r2 && r2[0] && r2[0].layerID;
     await bp([
-      dDuplicateLayer(),
-      dRenameLayer(LOW),
-      dDuplicateLayer(),
-      dRenameLayer(HIGH),
-      // выбираем low по имени (ordinal "back" ненадёжен — падает с "Select not available")
-      {
-        _obj: "select",
-        _target: [{ _ref: "layer", _name: LOW }],
-        makeVisible: false,
-        ...dontDisplay,
-      },
+      { _obj: "select", _target: [layerRef(lowID, LOW)], makeVisible: false, ...dontDisplay },
       useMedian ? dMedian(radius) : dGaussianBlur(radius),
       // вернуться на high-слой
-      {
-        _obj: "select",
-        _target: [{ _ref: "layer", _name: HIGH }],
-        makeVisible: false,
-        ...dontDisplay,
-      },
-      dApplyImageSubtract(LOW),
+      { _obj: "select", _target: [layerRef(highID, HIGH)], makeVisible: false, ...dontDisplay },
+      dApplyImageSubtract(layerRef(lowID, LOW)),
       dSetBlendMode("linearLight"),
     ]);
     // сгруппировать LOW+HIGH
     await bp([
       {
         _obj: "select",
-        _target: [{ _ref: "layer", _name: LOW }],
+        _target: [layerRef(lowID, LOW)],
         selectionModifier: { _enum: "selectionModifierType", _value: "addToSelectionContinuous" },
         makeVisible: false,
         ...dontDisplay,
@@ -369,6 +407,19 @@ async function frequencySeparation(radius, useMedian) {
       dRenameLayer("Frequency Separation"),
     ]);
   });
+}
+
+// Штамп видимого с фолбэком: на документе из единственного Background
+// mergeVisible недоступен — тогда просто дублируем слой
+async function smartStamp(name) {
+  let singleLayer = false;
+  try {
+    const doc = app.activeDocument;
+    const al = (doc.activeLayers || [])[0];
+    singleLayer = doc.layers.length === 1 && !(al && (al.isGroup === true || al.typename === "LayerSet" || al.layers));
+  } catch (e) {}
+  if (singleLayer) return await bp([dDuplicateLayer(), dRenameLayer(name)]);
+  return await bp([{ _obj: "mergeVisible", duplicate: true, ...dontDisplay }, dRenameLayer(name)]);
 }
 
 /* ---------- Карта команд ---------- */
@@ -390,12 +441,12 @@ const Scripts = {
   /* Dodge & Burn */
   DBCurves: async () =>
     modal("DB Curves", async () => {
-      await makeCurvesAdj("Dodge", [[0, 0], [128, 168], [255, 255]], true);
-      await makeCurvesAdj("Burn", [[0, 0], [128, 88], [255, 255]], true);
+      const dodgeID = await makeCurvesAdj("Dodge", [[0, 0], [128, 168], [255, 255]], true);
+      const burnID = await makeCurvesAdj("Burn", [[0, 0], [128, 88], [255, 255]], true);
       await bp([
         {
           _obj: "select",
-          _target: [{ _ref: "layer", _name: "Dodge" }],
+          _target: [{ _ref: "layer", ...(dodgeID ? { _id: dodgeID } : { _name: "Dodge" }) }],
           selectionModifier: { _enum: "selectionModifierType", _value: "addToSelectionContinuous" },
           makeVisible: false,
           ...dontDisplay,
@@ -495,7 +546,7 @@ const Scripts = {
 
   Flatten: () => modal("Flatten", () => app.activeDocument.flatten()),
 
-  ImageSize: () => bp([{ _obj: "imageSize", _options: { dialogOptions: "display" } }]),
+  ImageSize: () => showDialogLater({ _obj: "imageSize", _options: { dialogOptions: "display" } }, 150),
 
   OverSaturation: () =>
     modal("Over-Saturation Check", async () => {
@@ -531,16 +582,30 @@ const Scripts = {
     ["A", "B", "C", "D", "E", "F"].map((k) => [
       `Action${k}`,
       () =>
-        bp([
-          {
-            _obj: "play",
-            _target: [
-              { _ref: "action", _name: k },
-              { _ref: "actionSet", _name: "My Panel Actions" },
-            ],
-            ...dontDisplay,
-          },
-        ]),
+        modal("Action " + k, async () => {
+          // проверяем, что у пользователя есть набор и экшен — иначе PS кидает диалог
+          let found = false;
+          try {
+            const tree = await app.actionTree;
+            const set = tree.find((s) => s.name === "My Panel Actions");
+            found = !!(set && set.children && set.children.some((a) => a.name === k));
+          } catch (e) {}
+          if (!found) {
+            uiStatus("Нет экшена «" + k + "» в наборе «My Panel Actions» — назначьте свои в Actions");
+            logLine("Action" + k + ": action set not found, skipped");
+            return;
+          }
+          await bp([
+            {
+              _obj: "play",
+              _target: [
+                { _ref: "action", _name: k },
+                { _ref: "actionSet", _name: "My Panel Actions" },
+              ],
+              ...dontDisplay,
+            },
+          ]);
+        }),
     ])
   ),
 
@@ -551,21 +616,18 @@ const Scripts = {
   SelectiveColor: () => bp([dMakeAdj("selectiveColor")]),
   ColorBalance: () => bp([dMakeAdj("colorBalance")]),
 
-  Liquify: () => modal("Liquify", () => bp([{ _obj: "liquify", _options: { dialogOptions: "display" } }])),
+  // Liquify из UXP в PS 27.2 не вызывается (см. LiquifySmart) — подсказка
+  Liquify: () => uiStatus("Liquify: Filter → Liquify (⇧⌘X)"),
 
   Sharpen: () =>
     modal("Sharpen", async () => {
-      await bp([
-        { _obj: "mergeVisible", duplicate: true, ...dontDisplay },
-        dRenameLayer("Sharpen (High Pass)"),
-        dHighPass(2),
-        dSetBlendMode("overlay"),
-      ]);
+      await smartStamp("Sharpen (High Pass)");
+      await bp([dHighPass(2), dSetBlendMode("overlay")]);
     }),
 
   NewLayer: () => bp([dMakeLayer()]),
 
-  StampVisible: () => bp([{ _obj: "mergeVisible", duplicate: true, ...dontDisplay }, dRenameLayer("Stamp Visible")]),
+  StampVisible: () => modal("Stamp Visible", () => smartStamp("Stamp Visible")),
 
   Size120: () =>
     modal("120% Size", () =>
@@ -594,10 +656,10 @@ const Scripts = {
           ...dontDisplay,
         },
       ]);
-      await bp([{ _obj: "save", _options: { dialogOptions: "display" } }]);
+      showDialogLater({ _obj: "save", _options: { dialogOptions: "display" } });
     }),
 
-  SaveAs: () => bp([{ _obj: "save", _options: { dialogOptions: "display" } }]),
+  SaveAs: () => showDialogLater({ _obj: "save", _options: { dialogOptions: "display" } }, 150),
 
   /* ---------- Новое в 6.0 ---------- */
 
@@ -610,9 +672,9 @@ const Scripts = {
       const R = (globalThis.NS && globalThis.NS.radius) || 8;
       const LOW = "FS Low Frequency";
       const HIGH = "FS High Frequency";
+      const r1 = await bp([dDuplicateLayer(), dRenameLayer(LOW)]);
+      const lowID = r1 && r1[0] && r1[0].layerID;
       await bp([
-        dDuplicateLayer(),
-        dRenameLayer(LOW),
         dDuplicateLayer(),
         dRenameLayer(HIGH),
         dHighPass(R),
@@ -621,7 +683,7 @@ const Scripts = {
       await bp([
         {
           _obj: "select",
-          _target: [{ _ref: "layer", _name: LOW }],
+          _target: [{ _ref: "layer", ...(lowID ? { _id: lowID } : { _name: LOW }) }],
           selectionModifier: { _enum: "selectionModifierType", _value: "addToSelectionContinuous" },
           makeVisible: false,
           ...dontDisplay,
@@ -634,9 +696,8 @@ const Scripts = {
   // Плёночное зерно: штамп + шум + чуть blur, Soft Light
   FilmGrain: () =>
     modal("Film Grain", async () => {
+      await smartStamp("Film Grain");
       await bp([
-        { _obj: "mergeVisible", duplicate: true, ...dontDisplay },
-        dRenameLayer("Film Grain"),
         dAddNoise(4),
         dGaussianBlur(0.5),
         dSetBlendMode("softLight"),
@@ -644,23 +705,32 @@ const Scripts = {
       ]);
     }),
 
-  // Smart Liquify: конвертация в смарт-объект + диалог Liquify (редактируемо потом)
+  // Smart Liquify: конвертация в смарт-объект; сам фильтр Liquify в PS 27.2
+  // недоступен из UXP ни в модальном скоупе ("<unknown>"), ни вне его
+  // ("only allowed from inside a modal scope") — даже ExtendScript едва
+  // открывает его через GUI-путь. Поэтому: готовим смарт-объект и подсказываем
+  // шорткат. Диалогов-ловушек нет, слой остаётся редактируемым.
   LiquifySmart: () =>
     modal("Smart Liquify", async () => {
-      await bp([{ _obj: "newPlacedLayer", ...dontDisplay }]); // convert to Smart Object
-      await bp([{ _obj: "liquify", _options: { dialogOptions: "display" } }]);
+      // всегда работаем с копией: Background напрямую в смарт-объект не конвертится
+      await bp([dDuplicateLayer(), dRenameLayer("Liquify (smart)")]);
+      const r = await bp([{ _obj: "newPlacedLayer", ...dontDisplay }]);
+      const failed = r && r[0] && (r[0].message || r[0]._obj === "error");
+      logLine("LQ smart " + (failed ? "FAIL " + JSON.stringify(r[0]).slice(0, 150) : "ok"));
+      uiStatus(failed ? "Liquify: Filter → Liquify (⇧⌘X)" : "Смарт-объект готов. Дальше: Filter → Liquify (⇧⌘X)");
     }),
 
   // Image Size с Preserve Details 2.0
   ImageSizePreserveDetails: () =>
-    bp([
+    showDialogLater(
       {
         _obj: "imageSize",
         constrainProportions: true,
         interfaceIconFrameDimmed: { _enum: "interpolationType", _value: "preserveDetailsUpscale" },
         _options: { dialogOptions: "display" },
       },
-    ]),
+      150
+    ),
 
   // Select People (PS 27.9+): настоящий дескриптор selectPeopleV2.
   // parts: hair=1, eyebrows=2, eyes=3, iris=4, nose=6, mouth=7, teeth=8,
@@ -805,7 +875,6 @@ const Aliases = {
   Hue: "HueSat",
   Selectivecolor: "SelectiveColor",
   ColorBalance: "ColorBalance",
-  Liquify_smart: "Liquify",
   RA_SharpenDetails: "Sharpen",
   NewLayer: "NewLayer",
   Layer: "StampVisible",
