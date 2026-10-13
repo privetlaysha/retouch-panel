@@ -33,7 +33,7 @@ function resetNotices() {
 globalThis.resetNotices = resetNotices;
 
 function screenBtnGo() {
-  openUrl("https://retouchingacademylab.com/resources/");
+  openUrl("https://instagram.com/layshaphoto");
 }
 globalThis.screenBtnGo = screenBtnGo;
 

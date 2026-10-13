@@ -1,4 +1,4 @@
-﻿/* Beauty Retouch 6.0 - structure. All control visuals are art (css/art.css).
+/* Beauty Retouch 6.0 - structure. All control visuals are art (css/art.css).
    Fixed 220 x 740 (locked in manifest.json): 9 top / 19 sides / 6 bottom padding,
    182 content column. The height budget is exact, so any pixel added must be taken
    from another element. */
@@ -13,9 +13,12 @@ body { cursor: default; }
 #lcd1, #lcd2, #lcdBtn, #lcdDismiss { font-family: 'Menlo', 'Consolas', 'Courier New', monospace; }
 
 .logo-block { position: relative; height: 35px; }
-#raLogo { display: block; width: 148px; height: 28px; background-repeat: no-repeat;
-  background-image: url("../img/ra-logo-light-2x.png"); background-size: 148px 28px; }
-body.theme-dark #raLogo { background-image: url("../img/ra-logo-dark-2x.png"); }
+#layshaLogo { display: inline-block; width: 28px; height: 28px; border-radius: 50%;
+  background: url("../img/laysha-logo.png") center/cover no-repeat; vertical-align: middle; cursor: pointer; }
+.brand-link { display: inline-block; vertical-align: middle; margin-left: 7px; margin-top: 7px;
+  font-family: 'Menlo', 'Consolas', monospace; font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  color: #4a5140; cursor: pointer; }
+body.theme-dark .brand-link { color: #e8a25e; }
 /* top-right icon pair: reset (only while a notification is off, ui.js) + light/dark.
    18px squares, vertically centred on the logo; the logo's art ends at ~133px, so the pair
    (144-182) never touches it. Absolute, so the 35px row height is unchanged. */
@@ -54,9 +57,11 @@ body.theme-dark #raLogo { background-image: url("../img/ra-logo-dark-2x.png"); }
    pane gets its air from the zone padding; these two had none. 7px matches .section. */
 .hdr-gap { margin-top: 7px; }
 
-/* footer + screen = 22 + 74 */
-.a-Footer-WWW { margin: 2px auto 0 auto; }   /* sits under the Screen, at the very bottom.
-   2px, not more: the art already carries 8px of transparent padding above its ink. */
+/* footer: #LAYSHAPHOTO text link under the Screen */
+.footer-www { margin: 2px auto 0 auto; text-align: center; font-family: 'Menlo', 'Consolas', monospace;
+  font-size: 10px; letter-spacing: 2px; padding: 5px 0 2px; cursor: pointer; color: #4a5140; opacity: .9; }
+.footer-www:hover { opacity: 1; text-decoration: underline; }
+body.theme-dark .footer-www { color: #e8a25e; }
 #raScreen { margin-top: 11px; }
 .screen-wrap { position: relative; width: 182px; height: 51px; margin: 0 auto; }
 .lcd-glass { position: absolute; left: 4px; top: 4px; right: 4px; bottom: 4px; }
@@ -95,7 +100,6 @@ body { --zone: #a9b492; --zone-tab: #b7c39e; background: linear-gradient(180deg,
    img/ra-logo-dark-gold-2x.png) and every colour below is one gradient map: MODERNIZATION_NOTES section 27. */
 body.theme-dark { --zone: #1a1311; --zone-tab: transparent; background: linear-gradient(180deg, #1d1614, #120e0d); }
 body.theme-dark #panel { background-image: repeating-linear-gradient(180deg, rgba(255,150,80,0.025) 0px, rgba(255,150,80,0.025) 1px, transparent 1px, transparent 3px); }
-body.theme-dark #raLogo { background-image: url("../img/ra-logo-dark-gold-2x.png"); }
 /* Dotted rule as art (JKM, 2026-10-04): UXP does not repeat backgrounds, so a
    repeating-linear-gradient drew only its first dot in Photoshop. 182 x 1, a dot every 3px. */
 body.theme-dark .rule { background-color: transparent; background-image: url("../art/Rule-Dotted-dark-2x.png"); background-size: 182px 1px; background-repeat: no-repeat; }

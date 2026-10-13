@@ -1,11 +1,11 @@
-# My Retouch Panel for Photoshop
+# LAYSHA Retouch for Photoshop
 
 A free, open-source **UXP retouching panel** for Adobe Photoshop — a compact 208 px docked panel
 with one-click Dodge & Burn, Frequency Separation, luminosity selections and everyday retouch helpers.
 
 No licenses, no accounts, no servers, no obfuscation. Just HTML + CSS + a single readable `index.js`.
 
-![My Retouch Panel](docs/screenshot.png)
+![LAYSHA Retouch](docs/screenshot.png)
 
 ## Why
 
@@ -77,7 +77,7 @@ In the same `Adobe/UXP` folder open `PluginsInfo/v1/PS.json`
   "plugins": [
     {
       "hostMinVersion": "23.3.0",
-      "name": "My Retouch Panel",
+      "name": "LAYSHA Retouch",
       "path": "$localPlugins/External/MyRetouchPanel",
       "pluginId": "com.kimi.myretouchpanel",
       "status": "enabled",
@@ -86,7 +86,7 @@ In the same `Adobe/UXP` folder open `PluginsInfo/v1/PS.json`
     },
     {
       "hostMinVersion": "26.0.0",
-      "name": "My Retouch Panel 6",
+      "name": "LAYSHA Retouch 6",
       "path": "$localPlugins/External/MyRetouchPanel6",
       "pluginId": "com.kimi.myretouchpanel6",
       "status": "enabled",
@@ -101,7 +101,7 @@ If the file already has other plugins, keep them — just add these entries.
 
 ### Step 4 — Restart Photoshop
 
-`Plugins` menu → **My Retouch Panel** / **My Retouch Panel 6**. Done.
+`Plugins` menu → **LAYSHA Retouch** / **LAYSHA Retouch 6**. Done.
 
 **Alternative (developer route):** open [UXP Developer Tool](https://developer.adobe.com/photoshop/uxp/2022/guides/devtool/installation/),
 `Add Plugin…` → select `MyRetouchPanel/manifest.json` → `Load`. No PS.json editing needed.
@@ -115,7 +115,7 @@ Requires Photoshop **23.3 or newer** (UXP panels).
    `~/Library/Application Support/Adobe/UXP/Plugins/External/` (в Finder: `⌘⇧G`, вставить путь).
 3. В файле `Adobe/UXP/PluginsInfo/v1/PS.json` добавить запись панели (пример выше —
    если файла нет, создать его целиком по образцу).
-4. Перезапустить Photoshop → меню **Plugins → My Retouch Panel 6**.
+4. Перезапустить Photoshop → меню **Plugins → LAYSHA Retouch 6**.
 
 ## Project structure
 
@@ -154,4 +154,4 @@ Everything 5.2 does, plus:
 - **Smart Liquify** — converts to Smart Object first, so Liquify stays editable
 - **Image Size with Preserve Details 2.0**
 
-![My Retouch Panel 6](docs/screenshot-v6.png)
+![LAYSHA Retouch 6](docs/screenshot-v6.png)
