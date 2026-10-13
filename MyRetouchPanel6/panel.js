@@ -111,7 +111,7 @@ const dSetOpacity = (pct) => ({
 // перед созданием новой маски старую нужно удалить, как это делает оригинал)
 const dDeleteMask = () => ({
   _obj: "delete",
-  _target: [{ _ref: "channel", _enum: "ordinal", _value: "targetEnum" }],
+  _target: [{ _ref: "channel", _enum: "channel", _value: "mask" }],
   ...dontDisplay,
 });
 
@@ -424,6 +424,25 @@ async function smartStamp(name) {
 
 /* ---------- Карта команд ---------- */
 
+// Если активен не pixel-слой (кривая, группа), сначала выбираем верхний pixel-слой —
+// иначе autoCutout и подобные падают с "not currently available"
+async function ensurePixelLayer() {
+  try {
+    const doc = app.activeDocument;
+    const al = (doc.activeLayers || [])[0];
+    if (al && al.kind === "pixel") return;
+    const stack = [...(doc.layers || [])];
+    while (stack.length) {
+      const l = stack.shift();
+      if (l.kind === "pixel") {
+        await bp([{ _obj: "select", _target: [{ _ref: "layer", _id: l.id }], makeVisible: false, ...dontDisplay }]);
+        return;
+      }
+      if (l.layers) stack.push(...l.layers);
+    }
+  } catch (e) {}
+}
+
 const Scripts = {
   /* Инструменты */
   BrushTool: () => bp([dSelectTool("paintbrushTool")]),
@@ -436,7 +455,12 @@ const Scripts = {
   SelectionBrushTool: () => bp([dSelectTool("selectionBrushTool")]),
   RectMarqueeTool: () => bp([dSelectTool("marqueeRectTool")]),
   PenTool: () => bp([dSelectTool("penTool")]),
-  SelectSubject: () => bp([{ _obj: "autoCutout", sampleAllLayers: false, ...dontDisplay }]),
+  SelectSubject: async () => {
+    await ensurePixelLayer();
+    await bp([{ _obj: "autoCutout", sampleAllLayers: false, ...dontDisplay }]);
+    const chk = await bp([{ _obj: "get", _target: [{ _ref: "document", _enum: "ordinal", _value: "targetEnum" }], ...dontDisplay }]);
+    if (!(chk && chk[0] && chk[0].hasSelection)) uiStatus("Select Subject не сработал — выделения нет");
+  },
 
   /* Dodge & Burn */
   DBCurves: async () =>
@@ -491,12 +515,17 @@ const Scripts = {
   AddTexture: () =>
     modal("Add Texture", async () => {
       await bp([
-        dMakeLayer(),
-        dRenameLayer("Skin Texture"),
-        dSelectAll(),
-        dFillGray50(),
-        dDeselect(),
-        dSetBlendMode("overlay"),
+        {
+          _obj: "make",
+          _target: { _ref: "layer" },
+          using: {
+            _obj: "layer",
+            name: "Skin Texture",
+            mode: { _enum: "blendMode", _value: "overlay" },
+            fillNeutral: true,
+          },
+          ...dontDisplay,
+        },
         dAddNoise(3),
         dSetOpacity(40),
       ]);
@@ -538,8 +567,13 @@ const Scripts = {
         dGaussianBlur(30),
         dSetBlendMode("softLight"),
         dSetOpacity(50),
-        dMaskHideAll(),
       ]);
+      // повторный Glow: маску удаляем только если она есть (иначе PS кидает диалог)
+      try {
+        const lyr = await bp([{ _obj: "get", _target: [{ _ref: "layer", _enum: "ordinal", _value: "targetEnum" }], ...dontDisplay }]);
+        if (lyr && lyr[0] && lyr[0].hasUserMask) await bp([dDeleteMask()]);
+      } catch (e) {}
+      await bp([dMaskHideAll()]);
     }),
 
   /* Finish & Export */
@@ -615,7 +649,25 @@ const Scripts = {
   Curves: () => bp([dMakeAdj("curves")]),
   HueSat: () => bp([dMakeAdj("hueSaturation")]),
   SelectiveColor: () => bp([dMakeAdj("selectiveColor")]),
-  ColorBalance: () => bp([dMakeAdj("colorBalance")]),
+  ColorBalance: () =>
+    bp([
+      {
+        _obj: "make",
+        _target: [{ _ref: "adjustmentLayer" }],
+        using: {
+          _obj: "adjustmentLayer",
+          type: {
+            _obj: "colorBalance",
+            shadowLevels: [0, 0, 0],
+            midtoneLevels: [0, 0, 0],
+            highlightLevels: [0, 0, 0],
+            preserveLuminosity: true,
+            presetKind: { _enum: "presetKindType", _value: "presetKindDefault" },
+          },
+        },
+        ...dontDisplay,
+      },
+    ]),
 
   // Liquify из UXP в PS 27.2 не вызывается (см. LiquifySmart) — подсказка
   Liquify: () => uiStatus("Liquify: Filter → Liquify (⇧⌘X)"),
@@ -665,7 +717,7 @@ const Scripts = {
   /* ---------- Новое в 6.0 ---------- */
 
   // Частотка через Gaussian Blur (алиас 6.0)
-  FSGaussian: () => frequencySeparation(8, false),
+  FSGaussian: () => frequencySeparation((globalThis.NS && globalThis.NS.radius) || 8, !!(globalThis.NS && globalThis.NS.median)),
 
   // Custom FS через High Pass (6.0: "set the High Pass")
   FSHighPass: () =>
@@ -761,6 +813,13 @@ const Scripts = {
         },
       ]);
       if (res && res[0] && res[0]._obj === "error") throw new Error(res[0].message || "selectPeopleV2 error");
+      // PS 27.2 молча игнорирует selectPeopleV2 — проверяем, появилось ли выделение
+      const chk = await bp([{ _obj: "get", _target: [{ _ref: "document", _enum: "ordinal", _value: "targetEnum" }], ...dontDisplay }]);
+      if (!(chk && chk[0] && chk[0].hasSelection)) {
+        uiStatus("Select People требует Photoshop 27.9+ (или в кадре нет человека)");
+        logLine("SelectPeople: no selection (PS < 27.9?)");
+        return;
+      }
       uiStatus("Select People: " + p[0]);
     }),
 
@@ -814,7 +873,7 @@ const Aliases = {
   selBody: "SelBody",
   autoSkinMask: "AutoSkinMask",
   // верхний ряд инструментов
-  AITool: "RemoveTool",
+  AITool: "ObjectSelectionTool",
   BrushTool: "BrushTool",
   SpotHealingBrushTool: "SpotHealingBrushTool",
   RemoveTool: "RemoveTool",
@@ -884,7 +943,11 @@ const Aliases = {
   SAVEAS: "SaveAs",
 };
 
+let _urlT = 0;
 function openUrl(url) {
+  const now = Date.now();
+  if (now - _urlT < 1000) return;
+  _urlT = now;
   try {
     require("uxp").shell.openExternal(url);
   } catch (e) {

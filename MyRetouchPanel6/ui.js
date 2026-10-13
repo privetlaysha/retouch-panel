@@ -53,7 +53,11 @@ function applyTheme() {
   } catch (e) {}
 }
 
+let _themeTogT = 0;
 function toggleUI() {
+  const now = Date.now();
+  if (now - _themeTogT < 500) return; // антидребезг двойного клика UXP
+  _themeTogT = now;
   themeIdx = (themeIdx + 1) % THEMES.length;
   applyTheme();
   screenSay("Theme: " + (THEMES[themeIdx] || "light"));
@@ -134,7 +138,11 @@ function nsBuild() {
   });
 }
 
+let _nsTogT = 0;
 function nsToggle() {
+  const now = Date.now();
+  if (now - _nsTogT < 500) return; // антидребезг двойного клика UXP
+  _nsTogT = now;
   const d = document.getElementById("nsDrawer");
   if (!d) return;
   nsBuild();
