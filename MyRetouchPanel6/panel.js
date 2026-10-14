@@ -24,6 +24,13 @@ async function logLine(msg) {
   } catch (e) {}
 }
 logLine("=== panel loaded ===");
+// диагностика: список наборов экшенов пользователя в лог
+(async () => {
+  try {
+    const tree = await app.actionTree;
+    logLine("SETS: " + tree.map((s) => "[" + s.name + "](" + (s.actions || s.children || []).map((a) => a.name).join(",") + ")").join(" | "));
+  } catch (e) { logLine("tree dump failed: " + (e && e.message)); }
+})();
 
 /* ---------- Базовые помощники ---------- */
 
@@ -612,22 +619,30 @@ const Scripts = {
       ]);
     }),
 
-  /* My Actions — экшены A..F из набора "My Panel Actions" */
+  /* My Actions — экшены A..F: сначала ищем в наборе "My Panel Actions",
+     если его нет — берём первый экшен с таким именем из любого набора */
   ...Object.fromEntries(
     ["A", "B", "C", "D", "E", "F"].map((k) => [
       `Action${k}`,
       () =>
         modal("Action " + k, async () => {
-          // проверяем, что у пользователя есть набор и экшен — иначе PS кидает диалог
-          let found = false;
+          // проверяем, что у пользователя есть экшен — иначе PS кидает диалог
+          let setName = null;
           try {
             const tree = await app.actionTree;
-            const set = tree.find((s) => s.name === "My Panel Actions");
-            found = !!(set && set.children && set.children.some((a) => a.name === k));
+            const acts = (s) => s.actions || s.children || [];
+            const has = (s) => acts(s).some((a) => a.name === k);
+            const preferred = tree.find((s) => s.name === "My Panel Actions" && has(s));
+            const any = preferred || tree.find(has);
+            if (any) setName = any.name;
           } catch (e) {}
-          if (!found) {
-            uiStatus("\"" + k + "\": no action in set \"My Panel Actions\" — see Actions panel");
-            logLine("Action" + k + ": action set not found, skipped");
+          if (!setName) {
+            uiStatus("\"" + k + "\": no action named \"" + k + "\" found — see Actions panel");
+            try {
+              const tree2 = await app.actionTree;
+              logLine("SETS: " + tree2.map((s) => "[" + s.name + "](" + (s.actions || s.children || []).map((a) => a.name).join(",") + ")").join(" | "));
+            } catch (e) { logLine("tree dump failed: " + (e && e.message)); }
+            logLine("Action" + k + ": action not found, skipped");
             return false;
           }
           await bp([
@@ -635,7 +650,7 @@ const Scripts = {
               _obj: "play",
               _target: [
                 { _ref: "action", _name: k },
-                { _ref: "actionSet", _name: "My Panel Actions" },
+                { _ref: "actionSet", _name: setName },
               ],
               ...dontDisplay,
             },

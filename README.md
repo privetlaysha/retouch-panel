@@ -143,9 +143,13 @@ Want a new button? Add a `<div data-cmd="MyThing">`, write `Scripts.MyThing = �
 The **A B C D E F** buttons run *your own* Photoshop actions. The rules:
 
 1. Open the **Actions** panel in Photoshop (`Window → Actions`).
-2. Create an action **set** named exactly `My Panel Actions`.
-3. Inside it, record actions named exactly `A`, `B`, `C`, `D`, `E`, `F` (single letters).
-4. Done — button A plays action `A`, button B plays `B`, and so on. Works in both panels.
+2. Recommended: create an action **set** named exactly `My Panel Actions` and record actions
+   named exactly `A`, `B`, `C`, `D`, `E`, `F` (single letters) inside it.
+3. Done — button A plays action `A`, button B plays `B`, and so on. Works in both panels.
+
+If no `My Panel Actions` set exists, the panel falls back to the first action named `A`–`F`
+found in *any* set — so a single action named `A` anywhere in your Actions panel already binds
+to button A.
 
 If a slot has no matching action, the panel says so on its info screen instead of failing
 (`"A": no action in set "My Panel Actions"`).
