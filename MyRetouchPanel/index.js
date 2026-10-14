@@ -68,7 +68,7 @@ function showDialogLater(desc, delay = 350) {
 // поэтому modal просто выполняет функцию, ловя ошибки в консоль.
 async function modal(name, fn) {
   try {
-    await fn();
+    return await fn();
   } catch (e) {
     console.error(`[${name}]`, e);
     throw e;
@@ -626,9 +626,9 @@ const Scripts = {
             found = !!(set && set.children && set.children.some((a) => a.name === k));
           } catch (e) {}
           if (!found) {
-            uiStatus("Нет экшена «" + k + "» в наборе «My Panel Actions» — назначьте свои в Actions");
+            uiStatus("\"" + k + "\": no action in set \"My Panel Actions\" — see Actions panel");
             logLine("Action" + k + ": action set not found, skipped");
-            return;
+            return false;
           }
           await bp([
             {
@@ -989,8 +989,8 @@ function runScript(name) {
   core
     .executeAsModal(async () => {
       try {
-        await fn();
-        uiStatus("Done: " + name);
+        const r = await fn();
+        if (r !== false) uiStatus("Done: " + name);
         logLine("OK  " + name);
       } catch (e) {
         console.error(`[${name}]`, e);

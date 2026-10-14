@@ -138,6 +138,21 @@ because UXP blocks inline `onClick` handlers.
 
 Want a new button? Add a `<div data-cmd="MyThing">`, write `Scripts.MyThing = …`, reload. That's it.
 
+## My Actions (buttons A–F)
+
+The **A B C D E F** buttons run *your own* Photoshop actions. The rules:
+
+1. Open the **Actions** panel in Photoshop (`Window → Actions`).
+2. Create an action **set** named exactly `My Panel Actions`.
+3. Inside it, record actions named exactly `A`, `B`, `C`, `D`, `E`, `F` (single letters).
+4. Done — button A plays action `A`, button B plays `B`, and so on. Works in both panels.
+
+If a slot has no matching action, the panel says so on its info screen instead of failing
+(`"A": no action in set "My Panel Actions"`).
+
+По-русски: создай в панели **Операции (Actions)** набор `My Panel Actions`, а в нём экшены
+с именами `A`–`F` — кнопки панели будут запускать их по букве.
+
 ## License
 
 MIT — do whatever you want.
