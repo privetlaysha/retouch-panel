@@ -69,6 +69,9 @@ Copy `MyRetouchPanel` and/or `MyRetouchPanel6` into Photoshop's UXP plugins fold
 
 ### Step 3 — Register the panel(s)
 
+> **Important:** quit Photoshop **completely before** editing `PS.json` — Photoshop rewrites
+> this file on exit and will erase your changes. Edit the file, save it, then start Photoshop.
+
 In the same `Adobe/UXP` folder open `PluginsInfo/v1/PS.json`
 (create the folders and the file if missing). Add one entry per panel inside `"plugins": [ … ]`:
 
@@ -99,9 +102,18 @@ In the same `Adobe/UXP` folder open `PluginsInfo/v1/PS.json`
 
 If the file already has other plugins, keep them — just add these entries.
 
-### Step 4 — Restart Photoshop
+### Step 4 — Enable developer mode and restart Photoshop
 
-`Plugins` menu → **LAYSHA Retouch** / **LAYSHA Retouch 6**. Done.
+In Photoshop: `Edit → Preferences → Plugins` → enable **Enable Developer Mode**
+(«Режим разработчика»). Unsigned third-party UXP panels do not load without it.
+
+Restart Photoshop → `Plugins` menu → **LAYSHA Retouch** / **LAYSHA Retouch 6**. Done.
+
+**If the panels don't show up (Windows or macOS):**
+1. PS.json was edited while Photoshop was running → it got overwritten. Redo Step 3 with PS closed.
+2. Check the JSON is valid — no trailing commas, one `"plugins": [ ... ]` array at the top level.
+3. `pluginId` must match each panel's `manifest.json` `id` exactly.
+4. Photoshop ≥ 23.3 for MyRetouchPanel, ≥ 26.0 for MyRetouchPanel6.
 
 **Alternative (developer route):** open [UXP Developer Tool](https://developer.adobe.com/photoshop/uxp/2022/guides/devtool/installation/),
 `Add Plugin…` → select `MyRetouchPanel/manifest.json` → `Load`. No PS.json editing needed.
